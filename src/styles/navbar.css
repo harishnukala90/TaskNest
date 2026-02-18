@@ -1,0 +1,215 @@
+/* Layout & Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100000;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e5e7eb;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #38bdf8, #60a5fa, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
+
+/* Morphing Menu Container */
+.menu-container {
+  position: relative;
+}
+
+.morph-menu {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  width: 46px;
+  height: 46px;
+  background: #0f172a;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 
+    width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), 
+    height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), 
+    border-radius 0.45s ease;
+}
+
+.morph-menu:hover {
+  width: 210px;
+  height: 240px;
+  border-radius: 16px;
+}
+
+.morph-menu:not(:hover) {
+  transition-delay: 0.15s;
+}
+
+/* Morphing Content */
+.morph-icon {
+  width: 38px;
+  height: 38px;
+  margin: 4px;
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.morph-content {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  z-index: 10001;
+  opacity: 0; /* Hidden by default until hover */
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.morph-menu:hover .morph-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Menu Lists & Items */
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li, .menu a {
+  display: block;
+  padding: 12px 14px;
+  color: #e5e7eb;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+  text-decoration: none;
+}
+
+.menu-list li:hover, .menu a:hover {
+  background: rgba(56, 189, 248, 0.15);
+  padding-left: 20px;
+}
+
+/* Specialized Buttons */
+.menu-list .logout, .logout-btn {
+  margin-top: 6px;
+  color: #fca5a5 !important;
+}
+
+.menu-list .logout:hover, .logout-btn:hover {
+  background: rgba(239, 68, 68, 0.25) !important;
+}
+
+/* Status & Animation */
+.card-footer .status.overdue {
+  color: #ef4444;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+/* ============================
+   PULSE GLOW FOR LOGO & MENU
+============================ */
+
+/* Reuse the same pulse animation */
+@keyframes pulseGlow {
+  0% {
+    box-shadow:
+      0 0 0 2px rgba(56, 189, 248, 0.6),
+      0 0 18px rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(56, 189, 248, 0.85),
+      0 0 35px rgba(56, 189, 248, 0.75),
+      0 0 60px rgba(56, 189, 248, 0.45);
+  }
+  100% {
+    box-shadow:
+      0 0 0 2px rgba(56, 189, 248, 0.6),
+      0 0 18px rgba(56, 189, 248, 0.4);
+  }
+}
+/* ============================
+   MENU ICON (CIRCLE) GLOW
+============================ */
+.morph-menu {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Stop pulse when menu is open (hover) */
+.morph-menu:hover {
+  animation: none;
+}
+
+/* ============================
+   MENU PANEL GLOW
+============================ */
+.morph-menu:hover {
+  box-shadow:
+    0 0 0 2px rgba(56, 189, 248, 0.6),
+    0 0 28px rgba(56, 189, 248, 0.75),
+    0 0 55px rgba(56, 189, 248, 0.45);
+}
+
+/* ============================
+   MENU ITEM HOVER GLOW
+============================ */
+.menu-list li:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(56, 189, 248, 0.4),
+    0 0 12px rgba(56, 189, 248, 0.35);
+}
+/* ============================
+   THEME-AWARE NAVBAR MENU
+============================ */
+
+/* DARK MODE */
+body.dark .morph-menu {
+  background-color: #0f172a;
+}
+
+body.dark .morph-content {
+  background-color: #020617;
+}
+
+body.dark .menu-list li {
+  color: #e5e7eb;
+}
+
+body.dark .menu-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* LIGHT MODE */
+body.light .morph-menu {
+  background-color: #e5e7eb;
+}
+
+body.light .morph-content {
+  background-color: #ffffff;
+}
+
+body.light .menu-list li {
+  color: #020617;
+}
+
+body.light .menu-list li:hover {
+  background-color: rgba(2, 6, 23, 0.08);
+}
