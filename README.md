@@ -26,3 +26,4 @@ TaskNest is a real-time marketplace application that connects **Service Provider
 1. Clone the repository:
    ```bash
    git clone [https://github.com/harishnukala90/TaskNest.git](https://github.com/harishnukala90/TaskNest.git)
+   
