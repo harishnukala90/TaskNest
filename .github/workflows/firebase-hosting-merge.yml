@@ -12,11 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm ci && npm run build
+      
+      # This step handles both Hosting AND any other Firebase features in firebase.json
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TASKNEST_73B8D }}
           channelId: live
           projectId: tasknest-73b8d
-        env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
