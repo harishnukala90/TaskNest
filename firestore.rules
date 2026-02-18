@@ -1,24 +1,51 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Helper function
+
+    /* =========================
+       AUTHENTICATION
+    ========================= */
     function isLoggedIn() {
       return request.auth != null;
     }
 
-    // Jobs Collection
-    match /jobs/{jobId} {
-      allow read: if isLoggedIn();
-      allow create: if isLoggedIn();
-      allow update: if isLoggedIn(); 
-      allow delete: if isLoggedIn() && resource.data.postedBy == request.auth.uid;
+    function isOwner(userId) {
+      return request.auth.uid == userId;
     }
-    
-    // Users Collection
+
+    /* =========================
+       USERS COLLECTION
+    ========================= */
     match /users/{userId} {
+
+      // Anyone logged in can read user profiles
       allow read: if isLoggedIn();
-      allow write: if isLoggedIn() && request.auth.uid == userId;
+
+      // Only user can edit their own profile
+      allow update: if isOwner(userId);
+
+      // No one can delete users
+      allow delete: if false;
+
+      // User created only during register
+      allow create: if isLoggedIn();
+    }
+
+    /* =========================
+       JOBS COLLECTION
+    ========================= */
+    match /jobs/{jobId} {
+
+      // Anyone logged in can view jobs
+      allow read: if isLoggedIn();
+
+      // Only providers can create jobs
+      allow create: if isLoggedIn()
+        && request.resource.data.providerId == request.auth.uid;
+
+      // Provider can update or delete ONLY their job
+      allow update, delete: if isLoggedIn()
+        && resource.data.providerId == request.auth.uid;
     }
   }
 }
