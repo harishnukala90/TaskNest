@@ -10,7 +10,7 @@ TaskNest is a modern, real-time platform designed to connect service providers w
 ### 🌐 Live View
 <p align="center">
   <a href="https://tasknest-73b8d.web.app/" target="_blank">
-    <img src="/src/assets/logo bgremoved.png" width="500" alt="TaskNest Live Preview">
+    <img src="/src/assets/logobgremoved.png" width="500" alt="TaskNest Live Preview">
   </a>
   <br>
   <i>Click the image above to visit the live site!</i>
