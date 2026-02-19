@@ -1,32 +1,36 @@
-# 🚀 TaskNest - Labor Connection Platform
+# 🚀 TaskNest | Task Management & Job Platform
 
-TaskNest is a real-time marketplace application that connects **Service Providers** with **Workers**. Built with React and Firebase, it features a dual-dashboard system, secure job management, and live activity tracking.
+[![Firebase Deploy](https://github.com/harishnukala90/TaskNest/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/harishnukala90/TaskNest/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
 
-## ✨ Key Features
+TaskNest is a modern, real-time platform designed to connect service providers with workers. Built with React and powered by Firebase, it features automated deployments and secure data management.
 
-* **Dual Roles:** Specific interfaces for Providers (to post/manage jobs) and Workers (to find/apply for jobs).
-* **Secure Dashboards:** Real-time job status updates (Open vs. Completed).
-* **Firebase Integration:** Utilizes Firestore for database management and Firebase Auth for secure login.
-* **Activity History:** Automatically logs completed jobs for both providers and workers.
-* **Granular Security:** Custom Firestore Security Rules to prevent unauthorized data modification.
+### 🌐 [Live Demo: View TaskNest App](https://tasknest-73b8d.web.app/)
+
+---
+
+## ✨ Features
+
+* **Real-time Job Postings:** Create and browse tasks instantly using Firestore.
+* **Secure Authentication:** Powered by Firebase Auth for safe user logins.
+* **Automated CI/CD:** Every push to `main` deploys automatically via GitHub Actions.
+* **Responsive Dashboard:** Manage your profile and applications on any device.
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** React (Vite)
-* **Backend:** Firebase (Firestore & Authentication)
-* **Styling:** CSS3 (Responsive Design)
+* **Frontend:** React.js, Tailwind CSS
+* **Backend:** Firebase Firestore (NoSQL Database)
+* **Security:** Custom Firestore Security Rules
+* **Hosting:** Firebase Hosting with GitHub Actions
+
+---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-* Node.js installed
-* A Firebase project setup
+To run this project locally:
 
-### Installation
-1. Clone the repository:
+1. **Clone the repo**
    ```bash
    git clone [https://github.com/harishnukala90/TaskNest.git](https://github.com/harishnukala90/TaskNest.git)
-## 🌐 Live View
-Check out the [Live Site][1].
-
-[1]: https://tasknest-73b8d.web.app/
