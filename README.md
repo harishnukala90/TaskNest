@@ -7,7 +7,14 @@
 
 TaskNest is a modern, real-time platform designed to connect service providers with workers. Built with React and powered by Firebase, it features automated deployments and secure data management.
 
-### 🌐 [Live Demo: View TaskNest App](https://tasknest-73b8d.web.app/)
+### 🌐 Live View
+<p align="center">
+  <a href="https://tasknest-73b8d.web.app/" target="_blank">
+    <img src="https://img.freepik.com/free-vector/gradient-ui-ux-elements-background_23-2149056159.jpg" width="800" alt="TaskNest Live Preview">
+  </a>
+  <br>
+  <i>Click the image above to visit the live site!</i>
+</p>
 
 ---
 
