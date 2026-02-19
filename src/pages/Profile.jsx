@@ -150,7 +150,14 @@ export default function Profile() {
 
       {/* PROFILE CARD */}
       <div className="card" style={{marginTop:30}}>
-
+        
+        <h2 style={{
+              padding: "12px",
+              borderBottom: "1px solid #4d4b4b",
+              cursor: "pointer"
+            }}>
+              User Details
+        </h2>
         <p><b>Username:</b> {user.username}</p>
         <p><b>Role:</b> {user.role}</p>
 
@@ -294,16 +301,24 @@ export default function Profile() {
       {showSettings && (
         <div className="card">
 
+          <h2>Settings</h2>
           <button
             onClick={() => {
               setIsEditing(true);
               setShowSettings(false);
             }}
+            style={{
+              margin : 10
+            }}
           >
             Edit Profile
           </button>
 
-          <button onClick={toggleTheme}>
+          <button onClick={toggleTheme}
+            style={{
+              margin : 10
+            }}
+          >
             Toggle Theme
           </button>
 
@@ -311,13 +326,20 @@ export default function Profile() {
             onClick={() =>
               setShowActivity(!showActivity)
             }
+            style={{
+              margin : 10
+            }}
           >
             {showActivity
               ? "Hide Activity"
               : "Show Activity"}
           </button>
 
-          <button onClick={clearActivity}>
+          <button onClick={clearActivity}
+          style={{
+              margin : 10
+            }}
+          >
             Clear Activity
           </button>
 

@@ -160,7 +160,16 @@ export default function FindJob() {
   ========================= */
   return (
     <div className="page">
-
+        <h1
+          style={{
+              padding: "12px",
+              borderBottom: "1px solid #4d4b4b",
+              cursor: "pointer"
+            }}
+        >
+          Find Jobs
+        </h1>
+        <br/>
       <h2>Available Jobs</h2>
 
       {jobs.length === 0 && (

@@ -128,7 +128,16 @@ export default function PostJob() {
   ========================= */
   return (
     <div className="page">
-      <h2>Post a Job</h2>
+        <h1
+          style={{
+              padding: "12px",
+              borderBottom: "1px solid #4d4b4b",
+              cursor: "pointer"
+            }}
+        >
+          Post Job
+        </h1>
+        <br/>
 
       <h4>Job Title</h4>
       <input

@@ -171,7 +171,16 @@ export default function Dashboard() {
 
     return (
       <div className="page">
-
+        <h1
+          style={{
+              padding: "12px",
+              borderBottom: "1px solid #4d4b4b",
+              cursor: "pointer"
+            }}
+        >
+          Dashboard
+        </h1>
+        <br/>
         <h2>My Jobs</h2>
 
         {myJobs.length === 0 && (
