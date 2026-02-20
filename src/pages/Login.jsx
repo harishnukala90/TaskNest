@@ -70,7 +70,7 @@ export default function Login() {
       <button onClick={login}>Login</button>
       <br />
       <p className="reg-prompt">
-        If you don't have an account, &nbsp;"
+        If you don't have  account, &nbsp;"
       <a className="reg-link" href="/register">Register</a>
       "&nbsp;
       now !
