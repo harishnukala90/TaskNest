@@ -1,0 +1,241 @@
+/* ============================================================
+   SIDEBAR CONTAINER - THE RAIL
+============================================================ */
+.sidebar-container {
+  position: fixed;
+  top: 64px; 
+  left: 0;
+  height: calc(100vh - 64px);
+  background-color: var(--bg-primary);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 10000; 
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+  overflow: hidden;
+  width: 70px;
+}
+
+/* Expanded state */
+.sidebar-container.open {
+  width: 260px;
+  background: rgba(15, 23, 42, 0.45);
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+}
+[data-theme='light'] .sidebar-container.open {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-spacer {
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   NAVIGATION ITEMS
+============================================================ */
+.sidebar-nav {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 23px;
+  color: var(--text-muted);
+  cursor: pointer;
+  gap: 24px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Hover state that works in both modes */
+.nav-item:hover {
+  background: var(--border-color);
+  color: var(--text-main);
+}
+
+/* Active state with Brand color */
+.nav-item.active {
+  color: var(--primary);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+/* The active indicator bar on the left */
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--primary);
+}
+
+.nav-label {
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 0.95rem;
+  font-weight: 600;
+  pointer-events: none;
+  color: inherit;
+}
+
+.sidebar-container.open .nav-label {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   FOOTER SECTION
+============================================================ */
+.sidebar-footer {
+  margin-top: auto;
+  padding-bottom: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+/* Quick hide for labels to prevent layout jank during transition */
+.sidebar-container:not(.open) .nav-label {
+  display: none;
+}
+/* Sidebar.css fixes */
+.sidebar-container {
+  z-index: 10002; /* Ensure it stays above EVERYTHING except the profile dropdown */
+  background-color: var(--bg-primary); /* Use our dynamic variable */
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* IMPORTANT: Your main page wrapper needs to move when sidebar is present */
+.page {
+  margin-left: 70px; /* Width of collapsed sidebar */
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-container.open + .page {
+  margin-left: 260px; /* Width of expanded sidebar */
+}
+
+/* Ensure the TASKNEST text at the bottom is only visible when open */
+.sidebar-footer .brand-text {
+  display: none;
+}
+
+.sidebar-container.open .brand-text {
+  display: block;
+  margin-left: 10px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+============================================================ */
+
+/* Tablet: MD (768px - 1023px) */
+@media (max-width: 1023px) {
+  .sidebar-container {
+    width: 60px;
+  }
+
+  .sidebar-container.open {
+    width: 220px;
+  }
+
+  .nav-item {
+    padding: 10px 18px;
+    gap: 16px;
+  }
+
+  .page {
+    margin-left: 60px;
+  }
+
+  .sidebar-container.open + .page {
+    margin-left: 220px;
+  }
+}
+
+/* Mobile: SM (480px - 767px) */
+@media (max-width: 767px) {
+  .sidebar-container {
+    position: fixed;
+    top: 56px;
+    left: -70px;
+    height: calc(100vh - 56px);
+    width: 70px;
+    border-right: 1px solid var(--border-color);
+    z-index: 9999;
+  }
+
+  .sidebar-container.open {
+    left: 0;
+    width: 240px;
+  }
+
+  .page {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+  }
+
+  .sidebar-container.open + .page {
+    margin-left: 0;
+  }
+
+  .nav-item {
+    padding: 12px 16px;
+    gap: 18px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile: XS (up to 479px) */
+@media (max-width: 479px) {
+  .sidebar-container {
+    position: fixed;
+    top: 52px;
+    left: -60px;
+    height: calc(100vh - 52px);
+    width: 60px;
+    z-index: 9999;
+  }
+
+  .sidebar-container.open {
+    left: 0;
+    width: 200px;
+  }
+
+  .page {
+    margin-left: 0;
+  }
+
+  .sidebar-container.open + .page {
+    margin-left: 0;
+  }
+
+  .nav-item {
+    padding: 10px 12px;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .nav-logo-img {
+    height: 20px;
+  }
+
+  .sidebar-spacer {
+    height: 12px;
+  }
+
+  .sidebar-footer {
+    padding-bottom: 12px;
+    padding-top: 8px;
+  }
+
+  .nav-label {
+    font-size: 0.85rem;
+  }
+}

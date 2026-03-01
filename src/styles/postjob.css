@@ -1,0 +1,361 @@
+/* ============================================================
+   POST JOB FORM — GLASS PANEL
+============================================================ */
+
+.pj-form-wrapper {
+  max-width: 680px;
+  margin: 60px auto 100px;
+  padding: 40px;
+
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+
+  animation: formFade 0.6s ease;
+}
+
+@keyframes formFade {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.pj-main-title {
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  letter-spacing: -0.4px;
+}
+
+.pj-header-spacer {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  display: block;
+}
+
+/* ============================================================
+   LABELS
+============================================================ */
+
+.pj-input-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+
+  margin-top: 22px;
+  margin-bottom: 8px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ============================================================
+   INPUT FIELDS — GLASS INPUTS
+============================================================ */
+
+.pj-input-field {
+  width: 100%;
+  padding: 14px 16px;
+
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+
+  background: rgba(255,255,255,0.04);
+  color: var(--text-main);
+
+  font-size: 0.95rem;
+  transition: 0.25s ease;
+}
+
+/* Light theme surface */
+[data-theme='light'] .pj-input-field {
+  background: rgba(0,0,0,0.03);
+}
+
+/* Focus */
+.pj-input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px rgba(56,189,248,0.18),
+    0 8px 20px rgba(56,189,248,0.15);
+
+  transform: translateY(-1px);
+}
+
+.pj-input-field::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ============================================================
+   TIME ROW
+============================================================ */
+
+.time-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Collapse on mobile */
+@media (max-width: 600px) {
+  .time-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   DATE / TIME PICKER
+============================================================ */
+
+.pj-date-picker,
+.pj-time-picker {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Invert calendar icon in dark mode */
+[data-theme='dark'] .pj-input-field::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* ============================================================
+   SUBMIT BUTTON — STRONG PRIMARY CTA
+============================================================ */
+
+.pj-submit-button {
+  width: 100%;
+  margin-top: 45px;
+  padding: 16px;
+
+  border-radius: 16px;
+  border: none;
+
+  font-weight: 800;
+  font-size: 1rem;
+
+  background: linear-gradient(135deg,var(--primary),#60dbff);
+  color: white;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(56,189,248,0.35);
+  transition: 0.3s ease;
+}
+
+.pj-submit-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(56,189,248,0.45);
+}
+
+.pj-submit-button:active {
+  transform: translateY(-1px);
+}
+
+/* Disabled */
+.pj-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ============================================================
+   ERROR STATE — GLASS ALERT
+============================================================ */
+
+.pj-error-container {
+  margin-top: 30px;
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background: rgba(239,68,68,0.12);
+  border: 1px solid #ef4444;
+
+  color: #ef4444;
+  font-weight: 700;
+
+  backdrop-filter: blur(10px);
+
+  animation: errorShake 0.35s ease;
+}
+
+@keyframes errorShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+============================================================ */
+
+/* Tablet: MD (768px - 1023px) */
+@media (max-width: 1023px) {
+  .pj-form-wrapper {
+    max-width: 100%;
+    margin: 48px 20px 80px;
+    padding: 32px;
+    border-radius: 20px;
+  }
+
+  .pj-main-title {
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    margin-bottom: 6px;
+  }
+
+  .pj-header-spacer {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  .pj-input-label {
+    font-size: 0.7rem;
+    margin-top: 18px;
+    margin-bottom: 6px;
+  }
+
+  .pj-input-field {
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+  }
+
+  .time-row {
+    gap: 16px;
+  }
+
+  .pj-submit-button {
+    margin-top: 38px;
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile: SM (480px - 767px) */
+@media (max-width: 767px) {
+  .pj-form-wrapper {
+    max-width: 100%;
+    margin: 36px 16px 70px;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .pj-main-title {
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    margin-bottom: 6px;
+  }
+
+  .pj-header-spacer {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .pj-input-label {
+    font-size: 0.65rem;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    letter-spacing: 0.7px;
+  }
+
+  .pj-input-field {
+    padding: 12px 13px;
+    border-radius: 11px;
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  .time-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .pj-submit-button {
+    margin-top: 32px;
+    padding: 12px;
+    font-size: 0.9rem;
+    border-radius: 14px;
+    min-height: 44px;
+  }
+
+  .pj-error-container {
+    margin-top: 24px;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile: XS (up to 479px) */
+@media (max-width: 479px) {
+  .pj-form-wrapper {
+    max-width: 100%;
+    margin: 24px 12px 50px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  }
+
+  .pj-main-title {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+
+  .pj-header-spacer {
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+  }
+
+  .pj-input-label {
+    font-size: 0.6rem;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    letter-spacing: 0.6px;
+  }
+
+  .pj-input-field {
+    padding: 11px 12px;
+    border-radius: 10px;
+    font-size: 16px;
+    min-height: 40px;
+  }
+
+  .time-row {
+    gap: 0;
+  }
+
+  .pj-submit-button {
+    margin-top: 24px;
+    padding: 11px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    min-height: 40px;
+  }
+
+  .pj-submit-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .pj-error-container {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+  }
+}

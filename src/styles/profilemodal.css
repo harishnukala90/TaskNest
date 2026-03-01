@@ -1,0 +1,320 @@
+/* ============================================================
+   OVERLAY — GLASS BACKDROP
+============================================================ */
+
+.profile-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  z-index: 10000;
+
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  animation: overlayFade 0.25s ease;
+}
+
+[data-theme='light'] .profile-modal-overlay {
+  background: rgba(255,255,255,0.6);
+}
+
+/* ============================================================
+   MODAL CONTAINER
+============================================================ */
+
+.profile-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+
+  padding: 40px 26px 32px;
+
+  background: var(--glass-bg, rgba(20,20,25,0.75));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+  border-radius: 28px;
+
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Animation trigger from JSX */
+.profile-animate {
+  animation: modalPop 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ============================================================
+   CLOSE BUTTON
+============================================================ */
+
+.menu-close-x {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  background: rgba(255,255,255,0.08);
+  color: var(--text-main);
+
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.menu-close-x:hover {
+  background: rgba(239,68,68,0.2);
+  color: #ef4444;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.profile-modal-header {
+  width: 100%;
+  margin-bottom: 26px;
+}
+
+/* Avatar */
+
+.profile-modal-avatar-large {
+  width: 92px;
+  height: 92px;
+
+  margin: 0 auto 16px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg,var(--primary),#60dbff);
+  color: white;
+
+  border: 4px solid var(--glass-bg, rgba(0,0,0,0.3));
+  box-shadow: 0 10px 25px rgba(56,189,248,0.35);
+}
+
+.profile-modal-letter-large {
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+.profile-modal-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.profile-modal-role {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   DETAILS
+============================================================ */
+
+.profile-modal-details {
+  width: 100%;
+  text-align: left;
+
+  border-top: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+  padding-top: 20px;
+  margin-bottom: 24px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.detail-item .material-icons {
+  color: var(--primary);
+  font-size: 20px;
+}
+
+/* Description block */
+
+.description-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.profile-modal-description {
+  margin: 0;
+  line-height: 1.55;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.profile-modal-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-contact-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Contact Buttons */
+
+.contact-btn {
+  flex: 1;
+  padding: 12px;
+
+  border-radius: 14px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+
+  transition: 0.25s ease;
+}
+
+/* WhatsApp */
+
+.contact-btn.whatsapp {
+  background: linear-gradient(135deg,#25D366,#1ebe5d);
+  color: white;
+}
+
+.contact-btn.whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37,211,102,0.4);
+}
+
+/* Call */
+
+.contact-btn.call {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+}
+
+.contact-btn.call:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+/* ============================================================
+   CAROUSEL NAVIGATION
+============================================================ */
+
+.modal-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid var(--glass-border);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 10001;
+
+  transition: 0.25s ease;
+}
+
+.modal-nav-arrow .material-icons {
+  font-size: 34px;
+  color: white;
+}
+
+.modal-nav-arrow:hover {
+  background: rgba(56,189,248,0.2);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.modal-nav-arrow.left { left: 5vw; }
+.modal-nav-arrow.right { right: 5vw; }
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+
+@keyframes modalPop {
+  from { transform: scale(.88); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 768px) {
+
+  .profile-modal-container {
+    padding: 32px 20px 26px;
+    border-radius: 24px;
+  }
+
+  .modal-nav-arrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  .modal-nav-arrow .material-icons {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .profile-modal-container {
+    padding: 26px 18px;
+  }
+
+  .modal-contact-row {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,392 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   BODY & BASE THEME
+========================= */
+body {
+  background-color: #020617;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell;
+  line-height: 1.5;
+}
+
+/* =========================
+   PAGE CONTAINER
+========================= */
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 100px 24px 24px; /* navbar offset */
+  animation: fadeIn 0.35s ease;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+h2,
+h3,
+h4 {
+  color: #e5e7eb;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+textarea {
+  resize: none;
+}
+
+/* =========================
+   BUTTONS (GLOBAL)
+========================= */
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+/* =========================
+   PAGE ANIMATION
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .page {
+    padding: 90px 14px 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+/* ============================
+   DATE & TIME PICKER FIX
+============================ */
+
+/* Ensure visibility in dark mode */
+input[type="date"],
+input[type="time"] {
+  color-scheme: dark; /* 🔥 IMPORTANT */
+  cursor: pointer;
+}
+
+/* Chrome / Edge calendar & clock icon */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.2);
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Hover highlight */
+input[type="date"]:hover,
+input[type="time"]:hover {
+  box-shadow: 0 0 0 1px rgba(56,189,248,0.4),
+              0 0 10px rgba(56,189,248,0.25);
+}
+/* ============================
+   FORM FIELD ENHANCEMENTS
+   (Post Job + All Forms)
+============================ */
+
+/* Base style for all form fields */
+input,
+textarea,
+select {
+  background-color: #020617;
+  color: #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+/* Hover glow */
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.35),
+    0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+/* Focus glow */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #38bdf8;
+  box-shadow:
+    0 0 0 2px rgba(56, 189, 248, 0.7),
+    0 0 30px rgba(56, 189, 248, 0.75),
+    0 0 60px rgba(56, 189, 248, 0.5);
+}
+
+
+/* Placeholder color */
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Date & Time Picker Fix */
+input[type="date"],
+input[type="time"] {
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+/* Calendar & Clock icons */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.2);
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Disable resize handle glow overflow */
+textarea {
+  resize: vertical;
+}
+
+/* Disabled state */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* ============================
+   INPUT FOCUS COLOR CHANGE
+============================ */
+
+/* Default (dark) */
+input,
+textarea,
+select {
+  background-color: #020617;
+  color: #e5e7eb;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* When focused (clicked) */
+input:focus,
+textarea:focus,
+select:focus {
+  background-color: #ffffff;   /* 🔥 WHITE INSIDE */
+  color: #020617;              /* DARK TEXT */
+}
+
+/* Placeholder color when focused */
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: #6b7280;
+}
+
+/* Date & time text color fix */
+input[type="date"]:focus,
+input[type="time"]:focus {
+  color: #020617;
+}
+/* ============================
+   PULSE GLOW FOR POPUP CARDS
+============================ */
+
+/* Popup container must exist */
+.modal-overlay .card {
+  animation: popupGlow 2.5s ease-in-out infinite;
+  border-radius: 16px;
+}
+
+/* Glow animation */
+@keyframes popupGlow {
+  0% {
+    box-shadow:
+      0 0 0 2px rgba(56, 189, 248, 0.6),
+      0 0 20px rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(56, 189, 248, 0.85),
+      0 0 45px rgba(56, 189, 248, 0.75),
+      0 0 80px rgba(56, 189, 248, 0.55);
+  }
+  100% {
+    box-shadow:
+      0 0 0 2px rgba(56, 189, 248, 0.6),
+      0 0 20px rgba(56, 189, 248, 0.4);
+  }
+}
+
+/* Strong glow on hover */
+.modal-overlay .card:hover {
+  animation: none;
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 1),
+    0 0 55px rgba(56, 189, 248, 0.9),
+    0 0 100px rgba(56, 189, 248, 0.7);
+}
+/* ============================
+   ANIMATED PULSE GLOW (INPUTS)
+============================ */
+
+/* Base focus style */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #38bdf8;
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes pulseGlow {
+  0% {
+    box-shadow:
+      0 0 0 2px rgba(56, 189, 248, 0.6),
+      0 0 18px rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(56, 189, 248, 0.85),
+      0 0 35px rgba(56, 189, 248, 0.75),
+      0 0 60px rgba(56, 189, 248, 0.45);
+  }
+  100% {
+    box-shadow:
+      0 0 0 2px rgba(56, 189, 248, 0.6),
+      0 0 18px rgba(56, 189, 248, 0.4);
+  }
+}
+/* ============================
+   THEME MODES
+============================ */
+
+/* DARK MODE (default) */
+body.dark {
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+/* LIGHT MODE */
+body.light {
+  background-color: #f8fafc;
+  color: #020617;
+}
+
+/* Light mode cards */
+body.light .card {
+  background: #ffffff;
+  color: #020617;
+}
+
+/* Light mode navbar */
+body.light .navbar {
+  background: #ffffff;
+}
+
+/* Light mode inputs */
+body.light input,
+body.light textarea,
+body.light select {
+  background-color: #ffffff;
+  color: #020617;
+  border-color: #cbd5e1;
+}
+/* ============================
+   THEME-AWARE HEADINGS
+============================ */
+
+/* DARK MODE */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4 {
+  color: #e5e7eb; /* light text */
+}
+
+/* LIGHT MODE */
+body.light h1,
+body.light h2,
+body.light h3,
+body.light h4 {
+  color: #020617; /* dark text */
+}
+
+/* Optional: section subtitles (better contrast) */
+body.dark .section-title {
+  color: #c7d2fe;
+}
+
+body.light .section-title {
+  color: #1e3a8a;
+}
+.reg-prompt {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #797d85;
+}

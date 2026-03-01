@@ -1,0 +1,290 @@
+/* ============================================================
+   AUTH LAYOUT — CENTERED GLASS VIEWPORT
+============================================================ */
+
+.auth-login-container {
+  max-width: 420px;
+  margin: auto;
+  padding: 60px 24px 100px;
+
+  display: flex;
+  flex-direction: column;
+
+  /* Glass panel */
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+
+  animation: authFade 0.6s ease;
+}
+
+/* Entrance */
+@keyframes authFade {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.auth-login-header {
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--text-main);
+
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* ============================================================
+   LABELS
+============================================================ */
+
+.auth-input-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+
+  margin-top: 16px;
+  margin-bottom: 6px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ============================================================
+   INPUT FIELDS — GLASS INPUTS
+============================================================ */
+
+.auth-input-field {
+  width: 100%;
+
+  background: rgba(255,255,255,0.04);
+  color: var(--text-main);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+
+  padding: 14px 16px;
+  font-size: 0.95rem;
+
+  transition: 0.25s ease;
+}
+
+/* Light theme input surface */
+[data-theme='light'] .auth-input-field {
+  background: rgba(0,0,0,0.03);
+}
+
+/* Focus state */
+.auth-input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px rgba(56,189,248,0.18),
+    0 4px 14px rgba(56,189,248,0.18);
+
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   SUBMIT BUTTON — PRIMARY GRADIENT
+============================================================ */
+
+.auth-login-submit {
+  width: 100%;
+  margin-top: 32px;
+  padding: 14px;
+
+  background: linear-gradient(135deg,var(--primary),#60dbff);
+  color: white;
+
+  font-weight: 800;
+  font-size: 0.95rem;
+
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(56,189,248,0.35);
+  transition: 0.25s ease;
+}
+
+.auth-login-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(56,189,248,0.45);
+}
+
+.auth-login-submit:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   REGISTRATION HINT
+============================================================ */
+
+.auth-registration-hint {
+  text-align: center;
+  margin-top: 26px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Link */
+.auth-redirect-link {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 6px;
+  position: relative;
+  transition: 0.25s ease;
+}
+
+.auth-redirect-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: 0.25s ease;
+}
+
+.auth-redirect-link:hover {
+  color: var(--primary-hover);
+}
+
+.auth-redirect-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+============================================================ */
+
+/* Tablet: MD (768px - 1023px) */
+@media (max-width: 1023px) {
+  .auth-login-container {
+    max-width: 100%;
+    margin: 50px 18px;
+    padding: 40px 24px 80px;
+    border-radius: 20px;
+  }
+
+  .auth-login-header {
+    font-size: clamp(1.5rem, 2vw, 1.8rem);
+    margin-bottom: 22px;
+  }
+
+  .auth-input-label {
+    font-size: 0.7rem;
+    margin-top: 14px;
+  }
+
+  .auth-input-field {
+    padding: 13px 14px;
+    font-size: 0.9rem;
+    border-radius: 11px;
+  }
+}
+
+/* Mobile: SM (480px - 767px) */
+@media (max-width: 767px) {
+  .auth-login-container {
+    max-width: 100%;
+    margin: 36px 16px;
+    padding: 32px 20px 70px;
+    border-radius: 18px;
+  }
+
+  .auth-login-header {
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  .auth-input-label {
+    font-size: 0.65rem;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    letter-spacing: 0.7px;
+  }
+
+  .auth-input-field {
+    padding: 12px 13px;
+    font-size: 16px;
+    border-radius: 10px;
+    min-height: 44px;
+  }
+
+  .auth-login-submit {
+    margin-top: 28px;
+    padding: 12px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+    min-height: 44px;
+  }
+
+  .auth-registration-hint {
+    margin-top: 20px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile: XS (up to 479px) */
+@media (max-width: 479px) {
+  .auth-login-container {
+    max-width: 100%;
+    margin: 24px 12px;
+    padding: 28px 16px 50px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .auth-login-header {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+  }
+
+  .auth-input-label {
+    font-size: 0.6rem;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    letter-spacing: 0.6px;
+  }
+
+  .auth-input-field {
+    padding: 11px 12px;
+    font-size: 16px;
+    border-radius: 9px;
+    min-height: 40px;
+  }
+
+  .auth-login-submit {
+    margin-top: 22px;
+    padding: 11px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    min-height: 40px;
+  }
+
+  .auth-registration-hint {
+    margin-top: 16px;
+    font-size: 0.8rem;
+  }
+
+  .auth-redirect-link {
+    margin-left: 4px;
+  }
+}

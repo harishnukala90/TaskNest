@@ -1,0 +1,105 @@
+/* ============================================================
+   SCROLL TO TOP — FLOATING BUTTON
+============================================================ */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 90px;       /* above footer */
+  right: 28px;
+  z-index: 1100;
+
+  pointer-events: none; /* prevents invisible blocking */
+}
+
+/* Button */
+.scroll-btn {
+  width: 56px;
+  height: 56px;
+
+  border-radius: 16px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  /* Glass style */
+  background: var(--glass-bg, rgba(255,255,255,0.15));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid var(--glass-border, rgba(255,255,255,0.2));
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+
+  color: var(--text-main);
+
+  pointer-events: auto;
+
+  transition: all 0.25s ease;
+}
+
+/* Icon */
+.scroll-btn .material-icons {
+  font-size: 26px;
+}
+
+/* Hover */
+.scroll-btn:hover {
+  transform: translateY(-6px) scale(1.08);
+  background: linear-gradient(135deg,var(--primary),#60dbff);
+  color: white;
+  box-shadow: 0 14px 30px rgba(56,189,248,0.45);
+}
+
+/* Click */
+.scroll-btn:active {
+  transform: scale(0.95);
+}
+
+/* ============================================================
+   SHOW/HIDE ANIMATION
+============================================================ */
+
+.scroll-btn {
+  animation: scrollFadeIn 0.25s ease;
+}
+
+@keyframes scrollFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    right: 18px;
+    bottom: 80px;
+  }
+
+  .scroll-btn {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .scroll-btn .material-icons {
+    font-size: 22px;
+  }
+}

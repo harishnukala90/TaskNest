@@ -1,0 +1,373 @@
+/* ============================================================
+   GLOBAL THEME TOKENS
+============================================================ */
+:root {
+  /* DARK (Default) */
+  --bg-main: #0a0e14;
+  --bg-secondary: rgba(17, 24, 39, 0.65);
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
+
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+
+  --border-color: rgba(255,255,255,0.1);
+
+  --primary: #38bdf8;
+  --primary-hover: #0284c7;
+
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.25);
+  --blur: blur(18px);
+}
+
+/* LIGHT THEME */
+[data-theme='light'] {
+  --bg-main: #f9fafb;
+  --bg-secondary: rgba(255,255,255,0.75);
+  --glass-bg: rgba(255,255,255,0.55);
+  --glass-border: rgba(0,0,0,0.08);
+
+  --text-main: #111827;
+  --text-muted: #4b5563;
+
+  --border-color: #e5e7eb;
+
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+
+  --shadow-soft: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ============================================================
+   GLOBAL GLASS SYSTEM
+============================================================ */
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Clear foreground / blurred background top components */
+.glass-top {
+  background: transparent;
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+}
+
+/* ============================================================
+   SMOOTH THEME TRANSITIONS
+============================================================ */
+.about-page,
+.about-page *,
+.contact-form input,
+.contact-form textarea {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.25s ease;
+}
+
+/* ============================================================
+   HEADER / THEME TOGGLE
+============================================================ */
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.theme-toggle-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  color: var(--primary);
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  transition: 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: rotate(15deg) scale(1.1);
+  box-shadow: 0 0 15px rgba(56,189,248,0.4);
+}
+
+/* ============================================================
+   PAGE LAYOUT
+============================================================ */
+.about-page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 24px;
+  animation: pageFade 0.8s ease;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--text-main);
+}
+
+.about-header span {
+  color: var(--primary);
+}
+
+.about-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ============================================================
+   MISSION (GLASS CARD)
+============================================================ */
+.about-mission {
+  padding: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  border-radius: 24px;
+}
+
+.about-mission h2 {
+  color: var(--primary);
+}
+
+.about-mission p {
+  line-height: 1.8;
+  max-width: 720px;
+  margin: auto;
+}
+
+/* ============================================================
+   FEATURES GRID (RESPONSIVE)
+============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.about-feature-card {
+  padding: 32px 24px;
+  text-align: center;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  transition: 0.35s ease;
+}
+
+.about-feature-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--primary);
+  box-shadow: 0 15px 35px rgba(56,189,248,0.18);
+}
+
+.about-feature-card .material-icons {
+  font-size: 46px;
+  color: var(--primary);
+}
+
+/* ============================================================
+   TRANSPARENCY SECTION
+============================================================ */
+.about-transparency {
+  padding: 40px;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.transparency-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.transparency-list li {
+  display: flex;
+  gap: 12px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ============================================================
+   CONTACT FORM
+============================================================ */
+.about-contact {
+  padding: 40px;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 520px;
+  margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.03);
+  color: var(--text-main);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.2);
+}
+
+/* BUTTON SYSTEM */
+.contact-send-btn {
+  background: linear-gradient(135deg,var(--primary),#60dbff);
+  color: white;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56,189,248,0.4);
+}
+
+/* ============================================================
+   SUCCESS ANIMATION
+============================================================ */
+.success-pulse {
+  font-size: 70px;
+  color: var(--primary);
+  position: relative;
+}
+
+.success-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pulseRing 1.6s infinite;
+}
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(56,189,248,0.7); }
+  70% { box-shadow: 0 0 0 25px rgba(56,189,248,0); }
+  100% { box-shadow: 0 0 0 0 rgba(56,189,248,0); }
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.global-footer {
+  text-align: center;
+  padding: 50px 20px 30px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ============================================================
+   SCROLL TOP (GLASS + GLOW)
+============================================================ */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,var(--primary),#60dbff);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(56,189,248,0.45);
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+  transform: scale(1.12);
+}
+
+/* ============================================================
+   PAGE ANIMATIONS
+============================================================ */
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+============================================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .about-page {
+    padding: 50px 20px;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+
+  .about-page {
+    padding: 40px 16px;
+  }
+
+  .about-mission,
+  .about-contact,
+  .about-transparency {
+    padding: 28px 20px;
+  }
+
+  .about-feature-card {
+    padding: 26px 18px;
+  }
+
+  .contact-send-btn {
+    padding: 14px;
+  }
+}
+
+/* Small mobiles */
+@media (max-width: 480px) {
+
+  .about-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .scroll-top-btn {
+    width: 46px;
+    height: 46px;
+    bottom: 18px;
+    right: 18px;
+  }
+}

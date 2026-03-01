@@ -1,0 +1,451 @@
+/* ============================================================
+   FIND JOB FEED LAYOUT
+============================================================ */
+
+.fj-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 24px 100px;
+  animation: pageFade 0.6s ease;
+}
+
+/* HEADINGS */
+
+.fj-main-heading {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.fj-section-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   JOB CARD — GLASS MARKET CARD
+============================================================ */
+
+.fj-job-card {
+  position: relative;
+
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid var(--glass-border);
+  border-left: 4px solid var(--primary);
+
+  padding: 24px;
+  border-radius: 18px;
+  margin-bottom: 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  box-shadow: var(--shadow-soft);
+  transition: 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Hover only on desktop */
+@media (hover: hover) {
+  .fj-job-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow:
+      0 18px 45px rgba(0,0,0,0.35),
+      0 0 25px rgba(56,189,248,0.2);
+  }
+}
+
+/* ============================================================
+   JOB CONTENT
+============================================================ */
+
+.fj-job-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.fj-job-meta {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fj-job-meta .material-icons {
+  font-size: 18px;
+  color: var(--primary);
+}
+
+/* ============================================================
+   SLOT PROGRESS — GLASS INSET
+============================================================ */
+
+.fj-slot-container {
+  background: rgba(0,0,0,0.08);
+  padding: 14px 18px;
+  border-radius: 14px;
+  margin: 10px 0;
+  border: 1px solid var(--glass-border);
+}
+
+[data-theme='light'] .fj-slot-container {
+  background: rgba(0,0,0,0.03);
+}
+
+.fj-progress-bg {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+[data-theme='light'] .fj-progress-bg {
+  background: rgba(0,0,0,0.08);
+}
+
+.fj-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg,var(--primary),#818cf8);
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 0 18px rgba(56,189,248,0.35);
+}
+
+/* Pulse if not full */
+.fj-progress-bar:not([style*="100%"]) {
+  animation: slotPulse 2s infinite ease-in-out;
+}
+
+@keyframes slotPulse {
+  0% { opacity: 1; }
+  50% { opacity: .75; }
+  100% { opacity: 1; }
+}
+
+.fj-slot-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+/* ============================================================
+   ACTION BUTTONS
+============================================================ */
+
+.fj-action-area {
+  margin-top: 16px;
+}
+
+/* APPLY */
+.fj-apply-btn {
+  width: 100%;
+  padding: 14px;
+
+  background: linear-gradient(135deg,var(--primary),#60dbff);
+  color: white;
+
+  font-size: 0.95rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+
+  box-shadow: 0 6px 18px rgba(56,189,248,0.35);
+  transition: 0.25s ease;
+}
+
+.fj-apply-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(56,189,248,0.45);
+}
+
+/* CANCEL */
+.fj-cancel-btn {
+  width: 100%;
+  padding: 12px;
+
+  background: rgba(239,68,68,0.12);
+  color: #ef4444;
+
+  border: 1px solid #ef4444;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.fj-cancel-btn:hover {
+  background: #ef4444;
+  color: white;
+  box-shadow: 0 8px 18px rgba(239,68,68,0.35);
+}
+
+/* ============================================================
+   STATUS LABELS
+============================================================ */
+
+.fj-label {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: .5px;
+}
+
+.fj-label.applied {
+  background: rgba(56,189,248,0.15);
+  color: var(--primary);
+  border: 1px solid rgba(56,189,248,0.35);
+}
+
+.fj-label.full {
+  background: rgba(148,163,184,0.15);
+  color: var(--text-muted);
+}
+
+.fj-label.completed {
+  background: rgba(34,197,94,0.15);
+  color: #22c55e;
+}
+
+/* ============================================================
+   EMPTY STATE
+============================================================ */
+
+.fj-no-jobs-msg {
+  padding: 70px 24px;
+  text-align: center;
+  border: 2px dashed var(--glass-border);
+  border-radius: 22px;
+  color: var(--text-muted);
+  backdrop-filter: blur(10px);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+============================================================ */
+
+/* Tablet: MD (768px - 1023px) */
+@media (max-width: 1023px) {
+  .fj-container {
+    max-width: 100%;
+    padding: 40px 20px 80px;
+  }
+
+  .fj-main-heading {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .fj-section-title {
+    font-size: 0.8rem;
+    letter-spacing: 1.4px;
+    margin-bottom: 28px;
+  }
+
+  .fj-job-card {
+    padding: 22px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+
+  .fj-job-card-title {
+    font-size: 1.2rem;
+  }
+
+  .fj-job-meta {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile: SM (480px - 767px) */
+@media (max-width: 767px) {
+  .fj-container {
+    max-width: 100%;
+    padding: 32px 16px 80px;
+  }
+
+  .fj-main-heading {
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+    margin-bottom: 6px;
+  }
+
+  .fj-section-title {
+    font-size: 0.75rem;
+    letter-spacing: 1.2px;
+    margin-bottom: 24px;
+  }
+
+  .fj-job-card {
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+
+  .fj-job-card-title {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .fj-job-meta {
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  .fj-job-meta .material-icons {
+    font-size: 16px;
+  }
+
+  .fj-slot-container {
+    padding: 12px 14px;
+    margin: 8px 0;
+  }
+
+  .fj-progress-bg {
+    height: 8px;
+  }
+
+  .fj-slot-text {
+    font-size: 0.7rem;
+    margin-top: 6px;
+  }
+
+  .fj-action-area {
+    margin-top: 12px;
+  }
+
+  .fj-apply-btn,
+  .fj-cancel-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+  }
+
+  .fj-apply-btn {
+    margin-bottom: 8px;
+  }
+
+  .fj-label {
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+
+  .fj-no-jobs-msg {
+    padding: 50px 16px;
+    border-radius: 18px;
+  }
+}
+
+/* Mobile: XS (up to 479px) */
+@media (max-width: 479px) {
+  .fj-container {
+    max-width: 100%;
+    padding: 24px 12px 60px;
+  }
+
+  .fj-main-heading {
+    font-size: clamp(1.2rem, 5vw, 1.7rem);
+    margin-bottom: 4px;
+  }
+
+  .fj-section-title {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+  }
+
+  .fj-job-card {
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    gap: 10px;
+    border-left-width: 3px;
+  }
+
+  .fj-job-card-title {
+    font-size: 1rem;
+  }
+
+  .fj-job-meta {
+    font-size: 0.8rem;
+    gap: 5px;
+  }
+
+  .fj-job-meta .material-icons {
+    font-size: 14px;
+  }
+
+  .fj-slot-container {
+    padding: 10px 12px;
+    margin: 6px 0;
+    border-radius: 10px;
+  }
+
+  .fj-progress-bg {
+    height: 6px;
+  }
+
+  .fj-slot-text {
+    font-size: 0.65rem;
+    margin-top: 4px;
+  }
+
+  .fj-action-area {
+    margin-top: 10px;
+  }
+
+  .fj-apply-btn,
+  .fj-cancel-btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    min-height: 40px;
+  }
+
+  .fj-apply-btn {
+    margin-bottom: 6px;
+  }
+
+  .fj-label {
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+  }
+
+  .fj-no-jobs-msg {
+    padding: 40px 12px;
+    border-radius: 14px;
+    border-width: 1px;
+  }
+}
+
+/* ============================================================
+   PAGE ANIMATION
+============================================================ */
+
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
