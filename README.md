@@ -25,7 +25,7 @@
 
 ---
 
-## 📱 Open on Mobile
+## 📱 Open Anywhere
 
 
   <img src="src/assets/qr.png" width="200" alt="QR Code"/>
@@ -89,6 +89,9 @@ TaskNest is a simple job collaboration platform where:
 
 ```bash
 git clone https://github.com/harishnukala90/TaskNest.git
+```
+
+```bash
 cd TaskNest
 ```
 
