@@ -12,7 +12,7 @@ import {
   arrayUnion
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import "/src/styles/Dashboard.css";
+import "/src/styles/dashboard.css";
 
 export default function Dashboard() {
   const [jobs, setJobs] = useState([]);

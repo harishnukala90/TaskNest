@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import Loader from "../components/Loader";
-import "../styles/FindJob.css";
+import "../styles/findJob.css";
 
 export default function FindJob() {
   const [jobs, setJobs] = useState([]);

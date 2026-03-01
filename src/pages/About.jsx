@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import "/src/styles/About.css";
+import "/src/styles/about.css";
 import ScrollToTop from "../components/ScrollToTop";
 
 export default function About() {

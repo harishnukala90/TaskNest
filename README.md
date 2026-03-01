@@ -1,43 +1,31 @@
-```{=html}
-<!-- ===================================================== -->
-```
-```{=html}
-<!--                    TASKNEST README                   -->
-```
-```{=html}
-<!-- ===================================================== -->
-```
+# 🚀 TaskNest
+
 ```{=html}
 <p align="center">
 ```
-`<img src="src/assets/logobgremoved.png" width="170" alt="TaskNest Logo"/>`{=html}
+`<img src="src/assets/logo.png" width="160" alt="TaskNest Logo"/>`{=html}
 ```{=html}
 </p>
-```
-```{=html}
-<h1 align="center">
-```
-🚀 TaskNest
-```{=html}
-</h1>
 ```
 ```{=html}
 <p align="center">
 ```
 `<b>`{=html}Your Nest of Opportunities`</b>`{=html}`<br>`{=html} A
-real-time job collaboration platform connecting
-`<b>`{=html}Providers`</b>`{=html} and `<b>`{=html}Workers`</b>`{=html}.
+real-time job platform connecting `<b>`{=html}Providers`</b>`{=html} and
+`<b>`{=html}Workers`</b>`{=html}.
 ```{=html}
 </p>
 ```
+
+------------------------------------------------------------------------
+
 ```{=html}
 <p align="center">
 ```
 [![Deploy
 Status](https://github.com/harishnukala90/TaskNest/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/harishnukala90/TaskNest/actions)
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
-![Firebase](https://img.shields.io/badge/Firebase-Realtime-orange?logo=firebase)
-![Vite](https://img.shields.io/badge/Vite-Lightning-purple?logo=vite)
+![Firebase](https://img.shields.io/badge/Firebase-orange?logo=firebase)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ```{=html}
@@ -46,177 +34,97 @@ Status](https://github.com/harishnukala90/TaskNest/actions/workflows/firebase-ho
 
 ------------------------------------------------------------------------
 
-## 🌍 Live Demo
+## 🌐 Live Website
 
 ```{=html}
 <p align="center">
 ```
 `<a href="https://tasknest-73b8d.web.app/" target="_blank">`{=html}
-`<img src="src/assets/logo.png" width="520"/>`{=html} `</a>`{=html}
+`<img src="src/assets/logobgremoved.png" width="480" />`{=html} `</a>`{=html}
 ```{=html}
 </p>
 ```
-```{=html}
-<p align="center">
-```
-🔗 `<b>`{=html}`<a href="https://tasknest-73b8d.web.app/">`{=html}Visit
-Live Application`</a>`{=html}`</b>`{=html}
-```{=html}
-</p>
-```
+👉 **Open App:** https://tasknest-73b8d.web.app/
 
 ------------------------------------------------------------------------
 
-## 📱 Scan & Open Instantly
+## 📱 Open on Mobile
 
 ```{=html}
 <p align="center">
 ```
-`<img src="src/assets/qr.png" width="220" alt="QR Code"/>`{=html}
+`<img src="src/assets/qr.png" width="200" alt="QR Code"/>`{=html}
 ```{=html}
 </p>
 ```
-```{=html}
-<p align="center">
-```
-Open TaskNest directly on your mobile device.
-```{=html}
-</p>
-```
+Scan the QR code to open TaskNest directly on your phone.
 
 ------------------------------------------------------------------------
 
-## ✨ Why TaskNest?
+## ✨ What is TaskNest?
 
-TaskNest simplifies task collaboration by providing a **secure**,
-**real-time**, and **role-based** job platform where:
+TaskNest is a simple job collaboration platform where:
 
--   Providers publish opportunities
--   Workers discover and apply instantly
--   Everything updates live using Firebase
-
-Designed with scalability and modern UX principles.
+-   **Providers** post jobs
+-   **Workers** apply for jobs
+-   Everything updates in real time using Firebase
 
 ------------------------------------------------------------------------
 
-## ⚡ Core Features
+## ⚡ Features
 
-```{=html}
-<table>
-```
-```{=html}
-<tr>
-```
-```{=html}
-<td width="50%">
-```
 ### 👤 Authentication
 
--   Firebase Authentication
--   Persistent sessions
--   Role-based access
+-   Secure Firebase login
+-   Role-based users
 
-### 💼 Provider Tools
+### 💼 Providers Can
 
 -   Post jobs
 -   Manage applicants
 -   Remove workers
--   Mark completion
+-   Mark jobs completed
 -   Delete jobs
 
-```{=html}
-</td>
-```
-```{=html}
-<td width="50%">
-```
-### 🧑‍🔧 Worker Tools
+### 🧑‍🔧 Workers Can
 
 -   Browse jobs
 -   Apply instantly
 -   Cancel applications
--   Real-time updates
 
 ### 🔒 Security
 
--   Firestore Rules Engine
--   Ownership validation
--   Protected writes
-
-```{=html}
-</td>
-```
-```{=html}
-</tr>
-```
-```{=html}
-</table>
-```
-
-------------------------------------------------------------------------
-
-## 🧠 Architecture Overview
-
-    React (Frontend)
-            │
-            ▼
-    Firebase Authentication
-            │
-            ▼
-    Cloud Firestore (Realtime DB)
-            │
-            ▼
-    Firestore Security Rules
-            │
-            ▼
-    Firebase Hosting + GitHub Actions CI/CD
+-   Firestore security rules
+-   User ownership protection
 
 ------------------------------------------------------------------------
 
 ## 🛠 Tech Stack
 
-  Category     Technology
-  ------------ -------------------------
-  Frontend     React + Vite
-  State        React Hooks
-  Backend      Firebase Firestore
-  Auth         Firebase Authentication
-  Deployment   Firebase Hosting
-  CI/CD        GitHub Actions
+-   **Frontend:** React + Vite
+-   **Backend:** Firebase Firestore
+-   **Authentication:** Firebase Auth
+-   **Hosting:** Firebase Hosting
+-   **CI/CD:** GitHub Actions
 
 ------------------------------------------------------------------------
 
-## 📂 Project Structure
+## 🚀 Run Locally
 
-    src
-    ├── assets
-    │   ├── logo.png
-    │   ├── logobgremoved.png
-    │   └── qr.png
-    │
-    ├── components
-    ├── pages
-    ├── styles
-    └── firebase
-
-------------------------------------------------------------------------
-
-## 🚀 Local Setup
-
-### Clone Repository
+### 1. Clone project
 
 ``` bash
 git clone https://github.com/harishnukala90/TaskNest.git
 cd TaskNest
 ```
 
-### Install Dependencies
+### 2. Install packages
 
 ``` bash
 npm install
 ```
 
-### Start Development Server
+### 3. Start app
 
 ``` bash
 npm run dev
@@ -228,54 +136,16 @@ Open:
 
 ------------------------------------------------------------------------
 
-## 🔥 Environment Variables
+## 🔥 Environment Setup
 
-Create `.env`:
+Create `.env` file:
 
-``` env
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-```
-
-------------------------------------------------------------------------
-
-## 🚀 Deployment Pipeline
-
-Every push to `main` triggers:
-
-    GitHub Push
-       ↓
-    GitHub Actions
-       ↓
-    Vite Production Build
-       ↓
-    Firebase Hosting Deploy
-
-Zero manual deployment required.
-
-------------------------------------------------------------------------
-
-## 🎯 Design Principles
-
--   Minimal friction UX
--   Real-time feedback
--   Secure-by-default backend
--   Mobile-first responsiveness
--   Clean glassmorphism UI
-
-------------------------------------------------------------------------
-
-## 🔮 Future Roadmap
-
--   🔔 Notifications system
--   💬 Real-time chat
--   ⭐ Ratings & reviews
--   💳 Payment integration
--   📊 Admin analytics dashboard
+    VITE_FIREBASE_API_KEY=
+    VITE_FIREBASE_AUTH_DOMAIN=
+    VITE_FIREBASE_PROJECT_ID=
+    VITE_FIREBASE_STORAGE_BUCKET=
+    VITE_FIREBASE_MESSAGING_SENDER_ID=
+    VITE_FIREBASE_APP_ID=
 
 ------------------------------------------------------------------------
 
@@ -283,24 +153,14 @@ Zero manual deployment required.
 
 **Harish Nukala**
 
-GitHub:\
-👉 https://github.com/harishnukala90
+GitHub: https://github.com/harishnukala90
 
 ------------------------------------------------------------------------
 
-## 📜 License
+## 📄 License
 
-MIT License © 2026
+MIT License
 
 ------------------------------------------------------------------------
 
-```{=html}
-<p align="center">
-```
-⭐ Star this repo if you like TaskNest!
-```{=html}
-</p>
-```
-```{=html}
-<!-- ===================================================== -->
-```
+⭐ If you like this project, give it a star!
