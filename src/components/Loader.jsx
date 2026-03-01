@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-export default function Loader() {
-  return (
-    <div style={{ textAlign: "center", padding: "30px" }}>
-      <div className="loader"></div>
-    </div>
-  );
-}
-=======
 import "/src/styles/Loader.css";
 
 export default function Loader({ message = "Loading..." }) {
@@ -23,4 +14,3 @@ export default function Loader({ message = "Loading..." }) {
     </div>
   );
 }
->>>>>>> 8d2cd8c (final 1/5)

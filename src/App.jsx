@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-=======
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { auth, db } from "./firebase";
@@ -9,72 +6,12 @@ import { doc, getDoc } from "firebase/firestore";
 import './index.css';
 
 // Pages
->>>>>>> 8d2cd8c (final 1/5)
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import FindJob from "./pages/FindJob";
 import PostJob from "./pages/PostJob";
 import Profile from "./pages/Profile";
-<<<<<<< HEAD
-import Navbar from "./components/Navbar";
-import ProtectedRoute from "./components/ProtectedRoute";
-
-function Layout() {
-  const location = useLocation();
-
-  // Pages where Navbar should HIDE
-  const hideNavbarRoutes = ["/", "/register"];
-
-  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
-
-  return (
-    <>
-      {/* Show Navbar only if not login/register */}
-      {!shouldHideNavbar && <Navbar />}
-
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/find"
-          element={
-            <ProtectedRoute>
-              <FindJob />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/post"
-          element={
-            <ProtectedRoute>
-              <PostJob />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </>
-=======
 import Settings from "./pages/Settings";
 import About from "./pages/About";
 import Activity from "./pages/Activity";
@@ -209,7 +146,6 @@ function Layout() {
         <Footer />
       </div>
     </div>
->>>>>>> 8d2cd8c (final 1/5)
   );
 }
 
@@ -219,8 +155,4 @@ export default function App() {
       <Layout />
     </BrowserRouter>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8d2cd8c (final 1/5)

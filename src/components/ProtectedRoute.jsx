@@ -16,18 +16,10 @@ export default function ProtectedRoute({ children }) {
     return () => unsub();
   }, []);
 
-<<<<<<< HEAD
-  if (loading) return <p>Loading...</p>;
-=======
   // Added a unique class 'pr-loading-text' to the paragraph tag
   if (loading) return <p className="pr-1 pr-loading-text">Loading...</p>;
->>>>>>> 8d2cd8c (final 1/5)
 
   if (!user) return <Navigate to="/" />;
 
   return children;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8d2cd8c (final 1/5)

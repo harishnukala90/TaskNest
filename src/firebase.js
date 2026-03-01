@@ -1,9 +1,6 @@
 // 🔥 Firebase core
 import { initializeApp, getApps } from "firebase/app";
-<<<<<<< HEAD
-=======
 import { getStorage } from "firebase/storage";
->>>>>>> 8d2cd8c (final 1/5)
 
 // 🔐 Auth + Firestore
 import { getAuth } from "firebase/auth";
@@ -27,10 +24,7 @@ const app =
 
 // 🔐 Auth instance
 export const auth = getAuth(app);
-<<<<<<< HEAD
-=======
 export const storage = getStorage(app);
->>>>>>> 8d2cd8c (final 1/5)
 
 // 🗄 Firestore instance
 export const db = getFirestore(app);
