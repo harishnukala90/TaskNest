@@ -1,6 +1,6 @@
 # 🚀 TaskNest
 
-  <img src="src/assets/logo.png" width="160" alt="TaskNest Logo"/>
+  <img src="src/assets/logo.png" width="160" alt="TaskNest Logo" style={align:center}/>
 
   Your Nest of Opportunities
   A real-time job platform connecting Providers</b> and  Workers</b>.
@@ -18,7 +18,7 @@
 ## 🌐 Live Website
 
   <a href="https://tasknest-73b8d.web.app/" target="_blank">
-    <img src="src/assets/logobgremoved.png" width="480"/>
+    <img src="src/assets/logobgremoved.png" width="480" style={align:center}/>
   </a>
 
 👉 **Open App:** <https://tasknest-73b8d.web.app/>
@@ -88,16 +88,6 @@ TaskNest is a simple job collaboration platform where:
 ### 1. Clone project
 
 ```bash
-git clone https://github.com/harishnukala90/TaskNest.git
-cd TaskNest
-
-------------------------------------------------------------------------
-
-## 🚀 Run Locally
-
-### 1. Clone project
-
-``` bash
 git clone https://github.com/harishnukala90/TaskNest.git
 cd TaskNest
 ```
