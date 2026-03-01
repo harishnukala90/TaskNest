@@ -1,4 +1,4 @@
-import "/src/styles/Loader.css";
+import "/src/styles/loader.css";
 
 export default function Loader({ message = "Loading..." }) {
   return (
