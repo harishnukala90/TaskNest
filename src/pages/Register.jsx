@@ -4,7 +4,7 @@ import { registerUser } from "../utils/auth";
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Loader from "../components/Loader";
-import "/src/styles/register.css";
+import "../styles/register.css";
 
 export default function Register() {
   const navigate = useNavigate();
