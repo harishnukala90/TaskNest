@@ -1,34 +1,25 @@
 # 🚀 TaskNest
 
-<p align="center">
   <img src="src/assets/logo.png" width="160" alt="TaskNest Logo"/>
-</p>
 
-<p align="center">
-  <b>Your Nest of Opportunities</b><br>
-  A real-time job platform connecting <b>Providers</b> and <b> Workers</b>.
+  Your Nest of Opportunities
+  A real-time job platform connecting Providers</b> and  Workers</b>.
 </p>
 
 ---
-
-<p align="center">
 
 [![Deploy Status](https://github.com/harishnukala90/TaskNest/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/harishnukala90/TaskNest/actions)
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
 ![Firebase](https://img.shields.io/badge/Firebase-orange?logo=firebase)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-</p>
-
 ---
 
 ## 🌐 Live Website
 
-<p align="center">
   <a href="https://tasknest-73b8d.web.app/" target="_blank">
     <img src="src/assets/logobgremoved.png" width="480"/>
   </a>
-</p>
 
 👉 **Open App:** <https://tasknest-73b8d.web.app/>
 
@@ -36,9 +27,9 @@
 
 ## 📱 Open on Mobile
 
-<p align="center">
+
   <img src="src/assets/qr.png" width="200" alt="QR Code"/>
-</p>
+
 
 Scan the QR code to open TaskNest directly on your phone.
 
