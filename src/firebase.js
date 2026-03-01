@@ -24,6 +24,7 @@ const app =
 
 // 🔐 Auth instance
 export const auth = getAuth(app);
+window.auth = auth;
 export const storage = getStorage(app);
 
 // 🗄 Firestore instance
