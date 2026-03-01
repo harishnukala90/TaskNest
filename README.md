@@ -1,37 +1,93 @@
-<<<<<<< HEAD
-# 🚀 TaskNest | Task Management & Job Platform
+# 🚀 TaskNest — Your Nest of Opportunities
+
+<p align="center">
+  <img src="src/assets/logo.png" width="180" alt="TaskNest Logo"/>
+</p>
+
+<p align="center">
+  <b>A Modern Real-Time Job & Task Collaboration Platform</b><br>
+  Connecting <b>Providers</b> and <b>Workers</b> seamlessly using React & Firebase.
+</p>
+
+---
+
+<p align="center">
 
 [![Firebase Deploy](https://github.com/harishnukala90/TaskNest/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/harishnukala90/TaskNest/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![Firebase](https://img.shields.io/badge/Firebase-Backend-orange?logo=firebase)
 
-TaskNest is a modern, real-time platform designed to connect service providers with workers. Built with React and powered by Firebase, it features automated deployments and secure data management.
+</p>
 
-### 🌐 Live View
+---
+
+## 🌐 Live Application
+
 <p align="center">
   <a href="https://tasknest-73b8d.web.app/" target="_blank">
-    <img src="/src/assets/logobgremoved.png" width="500" alt="TaskNest Live Preview">
+    <img src="src/assets/logobgremoved.png" width="520" alt="TaskNest Live Preview"/>
   </a>
-  <br>
-  <i>Click the image above to visit the live site!</i>
+  <br/>
+  <sub>Click the image to explore TaskNest live 🚀</sub>
+</p>
+
+---
+
+## 📱 Instant Access (QR Code)
+
+<p align="center">
+  <img src="src/assets/qr.png" width="220" alt="TaskNest QR Code"/>
+</p>
+
+<p align="center">
+Scan the QR code to open <b>TaskNest</b> directly on your mobile device.
 </p>
 
 ---
 
 ## ✨ Features
 
-* **Real-time Job Postings:** Create and browse tasks instantly using Firestore.
-* **Secure Authentication:** Powered by Firebase Auth for safe user logins.
-* **Automated CI/CD:** Every push to `main` deploys automatically via GitHub Actions.
-* **Responsive Dashboard:** Manage your profile and applications on any device.
+### 👤 Authentication
+- Secure Firebase Authentication
+- Role-based access system
+- Persistent login sessions
+
+### 💼 Job Marketplace
+**Providers**
+- Post new jobs
+- Manage applicants
+- Remove workers
+- Mark jobs as completed
+- Delete jobs
+
+**Workers**
+- Browse available jobs
+- Apply instantly
+- Cancel applications anytime
+
+### ⚡ Real-Time Experience
+- Firestore live updates
+- Instant UI synchronization
+- Smooth responsive dashboard
+
+### 🔐 Security First
+- Advanced Firestore Security Rules
+- Ownership validation
+- Protected database operations
+
+---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** React.js, Tailwind CSS
-* **Backend:** Firebase Firestore (NoSQL Database)
-* **Security:** Custom Firestore Security Rules
-* **Hosting:** Firebase Hosting with GitHub Actions
+| Layer | Technology |
+|------|------------|
+| Frontend | React + Vite |
+| Styling | CSS / Modern UI Design |
+| Backend | Firebase Firestore |
+| Auth | Firebase Authentication |
+| Hosting | Firebase Hosting |
+| CI/CD | GitHub Actions |
 
 ---
 
@@ -39,24 +95,5 @@ TaskNest is a modern, real-time platform designed to connect service providers w
 
 To run this project locally:
 
-1. **Clone the repo**
-   ```bash
+## Clone the repo
    git clone [https://github.com/harishnukala90/TaskNest.git](https://github.com/harishnukala90/TaskNest.git)
-=======
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 8d2cd8c (final 1/5)
