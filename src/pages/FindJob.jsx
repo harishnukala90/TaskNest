@@ -74,75 +74,70 @@ export default function FindJob() {
      APPLY JOB
   ========================= */
   const applyJob = async (job) => {
-    try {
-      if (job.status === "completed") {
-        alert("Job completed");
-        return;
-      }
-
-      if (hasAlreadyApplied(job)) {
-        alert("Already applied");
-        return;
-      }
-
-      const approvedCount = getApprovedCount(job);
-      if (approvedCount >= (job.requiredWorkers || 1)) {
-        alert("No slots available");
-        return;
-      }
-
-      /* =========================
-         1️⃣ APPLY JOB (MAIN ACTION)
-      ========================= */
-
-      await updateDoc(doc(db, "jobs", job.id), {
-        appliedWorkers: arrayUnion({
-          uid: worker.uid,
-          username: worker.username,
-          profile: worker.profile,
-          status: "pending"
-        })
-      });
-
-      /* =========================
-         2️⃣ WORKER ACTIVITY (SAFE)
-     ========================= */
-
-      await updateDoc(doc(db, "users", worker.uid), {
-        activity: arrayUnion({
-          type: "applied_job",
-          message: `Applied for "${job.title}"`,
-          time: new Date().toLocaleString(),
-          relatedUserId: job.providerId
-        })
-      }).catch(console.error);
-
-      /* =========================
-         3️⃣ PROVIDER ACTIVITY (OPTIONAL)
-         (will fail due to rules — ignore)
-      ========================= */
-
-      if (job.providerId) {
-        updateDoc(doc(db, "users", job.providerId), {
-          activity: arrayUnion({
-            type: "new_applicant",
-            message: `${worker.username} applied for "${job.title}"`,
-            time: new Date().toLocaleString(),
-            relatedUserId: worker.uid
-          })
-        }).catch(() => {
-          // intentionally ignored (security rules)
-        });
-      }
-
-      alert("Applied successfully!");
-
-    } catch (err) {
-      console.error("Apply failed:", err);
-      alert("Failed to apply");
+  try {
+    if (job.status === "completed") {
+      alert("Job completed");
+      return;
     }
-  };
 
+    if (hasAlreadyApplied(job)) {
+      alert("Already applied");
+      return;
+    }
+
+    const approvedCount = getApprovedCount(job);
+    if (approvedCount >= (job.requiredWorkers || 1)) {
+      alert("No slots available");
+      return;
+    }
+
+    /* =========================
+       MAIN ACTION (ONLY REAL SUCCESS CHECK)
+    ========================= */
+
+    await updateDoc(doc(db, "jobs", job.id), {
+      appliedWorkers: arrayUnion({
+        uid: worker.uid,
+        username: worker.username,
+        profile: worker.profile,
+        status: "pending"
+      })
+    });
+
+    /* =========================
+       OPTIONAL LOGGING (SILENT)
+    ========================= */
+
+    // worker activity
+    updateDoc(doc(db, "users", worker.uid), {
+      activity: arrayUnion({
+        type: "applied_job",
+        message: `Applied for "${job.title}"`,
+        time: new Date().toLocaleString(),
+        relatedUserId: job.providerId
+      })
+    }).catch(() => {}); // silent ignore
+
+    // provider notification (blocked by rules → ignore)
+    if (job.providerId) {
+      updateDoc(doc(db, "users", job.providerId), {
+        activity: arrayUnion({
+          type: "new_applicant",
+          message: `${worker.username} applied for "${job.title}"`,
+          time: new Date().toLocaleString(),
+          relatedUserId: worker.uid
+        })
+      }).catch(() => {}); // ignore permission error
+    }
+
+    /* SUCCESS MESSAGE */
+    alert("Applied successfully!");
+
+  } catch (err) {
+    console.error("Apply failed:", err);
+    alert("Failed to apply");
+  }
+};
   /* =========================
      CANCEL APPLICATION
   ========================= */
