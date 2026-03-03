@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { getDoc } from "firebase/firestore";
 import WorkerCard from "../components/WorkerCard";
 import ProfileModal from "../components/ProfileModal";
 import Loader from "../components/Loader";
