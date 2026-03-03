@@ -49,7 +49,12 @@ export default function Dashboard() {
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "jobs"), (snapshot) => {
       const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setJobs(data);
+      setJobs(
+        snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+      );
     });
     return () => unsubscribe();
   }, []);
@@ -88,36 +93,40 @@ export default function Dashboard() {
   /* =========================
       DELETE & COMPLETE
   ========================= */
-  const deleteJob = async (job) => {
-    if (!window.confirm("Delete this job? All applicants will be notified.")) return;
-    try {
-      const notifyPromises = (job.appliedWorkers || []).map(w => 
-        updateDoc(doc(db, "users", w.uid), {
-          activity: arrayUnion({
-            type: "job_cancelled",
-            message: `The job "${job.title}" was deleted by the provider.`,
-            time: new Date().toLocaleString(),
-            relatedUserId: currentUser.uid
-          })
-        })
-      );
-      await Promise.all(notifyPromises);
-      await deleteDoc(doc(db, "jobs", job.id));
+const deleteJob = async (job) => {
 
-      await updateDoc(doc(db, "users", currentUser.uid), {
+  if (!window.confirm("Delete this job? All applicants will be notified."))
+    return;
+
+  try {
+    await deleteDoc(doc(db, "jobs", job.id));
+    updateDoc(doc(db, "users", currentUser.uid), {
+      activity: arrayUnion({
+        type: "delete_job",
+        message: `You deleted the job: "${job.title}"`,
+        time: new Date().toLocaleString(),
+        relatedUserId: null
+      })
+    }).catch(() => {});
+
+    (job.appliedWorkers || []).forEach((w) => {
+      updateDoc(doc(db, "users", w.uid), {
         activity: arrayUnion({
-          type: "delete_job",
-          message: `You deleted the job: "${job.title}"`,
+          type: "job_cancelled",
+          message: `The job "${job.title}" was deleted by the provider.`,
           time: new Date().toLocaleString(),
-          relatedUserId: null
+          relatedUserId: currentUser.uid
         })
-      });
+      }).catch(() => {});
+    });
 
-      alert("Job deleted and workers notified.");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    alert("Job deleted successfully!");
+
+  } catch (error) {
+    console.error("Delete failed:", error);
+    alert("Failed to delete job");
+  }
+};
 
   const markCompleted = async (job) => {
     try {
