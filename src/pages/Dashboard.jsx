@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getDoc } from "firebase/firestore";
 import WorkerCard from "../components/WorkerCard";
 import ProfileModal from "../components/ProfileModal";
 import Loader from "../components/Loader";
@@ -99,7 +100,19 @@ const deleteJob = async (job) => {
     return;
 
   try {
-    await deleteDoc(doc(db, "jobs", job.id));
+
+    /* =========================
+       1️⃣ GET PROVIDER SNAPSHOT
+    ========================= */
+    const providerSnap = await getDoc(
+      doc(db, "users", currentUser.uid)
+    );
+
+    const providerData = providerSnap.data();
+
+    /* =========================
+       2️⃣ STORE PROVIDER HISTORY
+    ========================= */
     updateDoc(doc(db, "users", currentUser.uid), {
       activity: arrayUnion({
         type: "delete_job",
@@ -109,16 +122,36 @@ const deleteJob = async (job) => {
       })
     }).catch(() => {});
 
+    /* =========================
+       3️⃣ SAVE PROVIDER DETAILS
+       INTO EACH WORKER HISTORY
+    ========================= */
     (job.appliedWorkers || []).forEach((w) => {
       updateDoc(doc(db, "users", w.uid), {
         activity: arrayUnion({
           type: "job_cancelled",
-          message: `The job "${job.title}" was deleted by the provider.`,
-          time: new Date().toLocaleString(),
-          relatedUserId: currentUser.uid
+
+          jobTitle: job.title,
+          location: job.location,
+          date: job.date,
+
+          // ⭐ IMPORTANT PART
+          provider: {
+            uid: currentUser.uid,
+            username: providerData.username,
+            profile: providerData.profile
+          },
+
+          message: `The job "${job.title}" was deleted by ${providerData.username}.`,
+          time: new Date().toLocaleString()
         })
       }).catch(() => {});
     });
+
+    /* =========================
+       4️⃣ DELETE JOB LAST
+    ========================= */
+    await deleteDoc(doc(db, "jobs", job.id));
 
     alert("Job deleted successfully!");
 
