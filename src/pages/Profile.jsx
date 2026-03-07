@@ -161,6 +161,7 @@ export default function Profile() {
         {/* DETAILS */}
         {!isEditing ? (
           <div className="prof-view-mode">
+            <p>We are facing some issue with profile picture</p>
             <p><b>Username:</b> {user.username}</p>
             <p><b>Location:</b> {user.profile.location || "Not set"}</p>
             <p><b>Phone:</b> {user.profile.phone || "Not set"}</p>
