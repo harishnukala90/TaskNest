@@ -120,7 +120,7 @@ export default function Register() {
 
       {/* PROFILE IMAGE */}
       <div className="reg-avatar-section">
-        <p>We are facing some issue with profile picture</p>
+        <p>We are facing some issue with profile picture 😅</p>
         <div className="reg-avatar-preview">
           <img
             src={preview || "/default-avatar.png"}
