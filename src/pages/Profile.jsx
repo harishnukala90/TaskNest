@@ -124,9 +124,9 @@ export default function Profile() {
       <h2>{isEditing ? "Edit Profile" : "My Profile"}</h2>
 
       <div className="prof-info-card">
+        <p>We are facing some issue with profile picture 😅</p>
         {/* AVATAR */}
         <div className="prof-avatar-display">
-          <p>We are facing some issue with profile picture 😅</p>
           <div className="prof-img-wrapper">
             {preview ? (
               <img
