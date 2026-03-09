@@ -77,6 +77,10 @@ service cloud.firestore {
         return
           request.auth.uid != resource.data.providerId
           &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['appliedWorkers'])
+          &&
+          !resource.data.appliedWorkers.hasAny([request.auth.uid])
+          &&
           request.resource.data.appliedWorkers.size()
             == resource.data.appliedWorkers.size() + 1
           &&
@@ -88,8 +92,9 @@ service cloud.firestore {
         return
           request.auth.uid != resource.data.providerId
           &&
-          request.resource.data.appliedWorkers.size()
-            == resource.data.appliedWorkers.size() - 1;
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['appliedWorkers'])
+          &&
+          request.resource.data.appliedWorkers == resource.data.appliedWorkers.delete(request.auth.uid);
       }
     }
   }
