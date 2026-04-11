@@ -30,7 +30,7 @@ export const addActivity = (username, message) => {
     );
   }
 };
-=======
+
 import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import { addActivity } from "./activity"; // The Firestore version we just made
@@ -66,4 +66,3 @@ export const applyForJob = async (jobId, workerId, workerName) => {
     return { success: false, error: error.message };
   }
 };
->>>>>>> 8d2cd8c (final 1/5)
