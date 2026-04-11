@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export const addActivity = (username, message) => {
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
