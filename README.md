@@ -1,9 +1,12 @@
 # 🚀 TaskNest
 
-  <img src="src/assets/logo.png" width="160" alt="TaskNest Logo" style={align:center}/>
+<p align="center">
+  <img src="src/assets/logo.png" width="160" alt="TaskNest Logo"/>
+</p>
 
-  Your Nest of Opportunities
-  A real-time job platform connecting Providers</b> and  Workers</b>.
+<p align="center">
+  <strong>Your Nest of Opportunities</strong><br>
+  A real-time job platform connecting <strong>Providers</strong> and <strong>Workers</strong>.
 </p>
 
 ---
@@ -17,9 +20,11 @@
 
 ## 🌐 Live Website
 
+<p align="center">
   <a href="https://tasknest-73b8d.web.app/" target="_blank">
-    <img src="src/assets/logobgremoved.png" width="480" style={align:center}/>
+    <img src="src/assets/logobgremoved.png" width="480" alt="TaskNest Live"/>
   </a>
+</p>
 
 👉 **Open App:** <https://tasknest-73b8d.web.app/>
 
@@ -27,8 +32,9 @@
 
 ## 📱 Open Anywhere
 
-
+<p align="center">
   <img src="src/assets/qr.png" width="200" alt="QR Code"/>
+</p>
 
 
 Scan the QR code to open TaskNest directly on your phone.
