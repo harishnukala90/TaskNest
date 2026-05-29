@@ -1,7 +1,9 @@
 # 🚀 TaskNest
 
 <p align="center">
-  <img src="src/assets/logo.png" width="160" alt="TaskNest Logo"/>
+  <a href="https://tasknest-73b8d.web.app/" target="_blank">
+    <img src="src/assets/logobgremoved.png" width="520" alt="TaskNest Logo"/>
+  </a>
 </p>
 
 <p align="center">
@@ -18,15 +20,13 @@
 
 ---
 
-## 🌐 Live Website
+## ✨ What is TaskNest?
 
-<p align="center">
-  <a href="https://tasknest-73b8d.web.app/" target="_blank">
-    <img src="src/assets/logobgremoved.png" width="480" alt="TaskNest Live"/>
-  </a>
-</p>
+TaskNest is a simple job collaboration platform where:
 
-👉 **Open App:** <https://tasknest-73b8d.web.app/>
+- **Providers** post jobs  
+- **Workers** apply for jobs  
+- Everything updates in real time using Firebase  
 
 ---
 
@@ -36,18 +36,13 @@
   <img src="src/assets/qr.png" width="200" alt="QR Code"/>
 </p>
 
-
 Scan the QR code to open TaskNest directly on your phone.
 
 ---
 
-## ✨ What is TaskNest?
+## 🌐 Live Website
 
-TaskNest is a simple job collaboration platform where:
-
-- **Providers** post jobs  
-- **Workers** apply for jobs  
-- Everything updates in real time using Firebase  
+👉 **Open App:** <https://tasknest-73b8d.web.app/>
 
 ---
 
@@ -95,42 +90,37 @@ TaskNest is a simple job collaboration platform where:
 
 ```bash
 git clone https://github.com/harishnukala90/TaskNest.git
-```
-
-```bash
 cd TaskNest
 ```
 
 ### 2. Install packages
 
-``` bash
+```bash
 npm install
 ```
 
-### 3. Start app
+### 3. Environment Setup
 
-``` bash
+Create `.env` file in the root directory:
+
+```
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+```
+
+### 4. Start app
+
+```bash
 npm run dev
 ```
 
-Open:
+Open: <http://localhost:5173>
 
-    http://localhost:5173
-
-------------------------------------------------------------------------
-
-## 🔥 Environment Setup
-
-Create `.env` file:
-
-    VITE_FIREBASE_API_KEY=
-    VITE_FIREBASE_AUTH_DOMAIN=
-    VITE_FIREBASE_PROJECT_ID=
-    VITE_FIREBASE_STORAGE_BUCKET=
-    VITE_FIREBASE_MESSAGING_SENDER_ID=
-    VITE_FIREBASE_APP_ID=
-
-------------------------------------------------------------------------
+---
 
 ## 👨‍💻 Author
 
@@ -138,12 +128,12 @@ Create `.env` file:
 
 GitHub: <https://github.com/harishnukala90>
 
-------------------------------------------------------------------------
+---
 
 ## 📄 License
 
 MIT License
 
-------------------------------------------------------------------------
+---
 
 ⭐ If you like this project, give it a star!
