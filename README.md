@@ -14,8 +14,11 @@
 ---
 
 [![Deploy Status](https://github.com/harishnukala90/TaskNest/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/harishnukala90/TaskNest/actions)
-![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![Firebase](https://img.shields.io/badge/Firebase-orange?logo=firebase)
+![TypeScript](https://img.shields.io/badge/TypeScript-ready-blue?logo=typescript)
+![PWA](https://img.shields.io/badge/PWA-enabled-green?logo=pwa)
+![Vitest](https://img.shields.io/badge/Testing-Vitest-purple?logo=vitest)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
@@ -51,7 +54,9 @@ Scan the QR code to open TaskNest directly on your phone.
 ### 👤 Authentication
 
 - Secure Firebase login
-- Role-based users
+- Role-based users (Worker/Provider)
+- Password strength validation
+- Session persistence
 
 ### 💼 Providers Can
 
@@ -71,16 +76,35 @@ Scan the QR code to open TaskNest directly on your phone.
 
 - Firestore security rules
 - User ownership protection
+- Input validation & sanitization
+- Error boundaries for graceful error handling
+
+### 📱 PWA Support
+
+- Install as mobile/desktop app
+- Offline capability
+- Service worker caching
+- Fast loading with caching strategies
+
+### 🧪 Quality Assurance
+
+- Unit testing with Vitest
+- Component testing with React Testing Library
+- Type-safe code structure
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Frontend:** React + Vite
+- **Frontend:** React 19 + Vite 7
 - **Backend:** Firebase Firestore
 - **Authentication:** Firebase Auth
 - **Hosting:** Firebase Hosting
 - **CI/CD:** GitHub Actions
+- **Forms:** React Hook Form
+- **Notifications:** React Hot Toast
+- **Testing:** Vitest + React Testing Library
+- **PWA:** Vite PWA Plugin
 
 ---
 
@@ -103,14 +127,16 @@ npm install
 
 Create `.env` file in the root directory:
 
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
 ```
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-```
+
+> ⚠️ **Important:** Never commit your `.env` file to version control!
 
 ### 4. Start app
 
@@ -119,6 +145,56 @@ npm run dev
 ```
 
 Open: <http://localhost:5173>
+
+---
+
+## 🧪 Testing
+
+```bash
+# Run tests once
+npm run test:run
+
+# Run tests with UI
+npm run test:ui
+
+# Run tests with coverage
+npm run test:coverage
+
+# Watch mode
+npm run test
+```
+
+---
+
+## 📦 Building for Production
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## 🔧 Linting
+
+```bash
+npm run lint
+```
+
+---
+
+## 🛡️ Security Best Practices
+
+1. **Environment Variables:** All sensitive Firebase config is stored in `.env` files
+2. **Firestore Rules:** Security rules protect user data and job applications
+3. **Input Validation:** All form inputs are validated and sanitized
+4. **Error Boundaries:** Graceful error handling prevents app crashes
+5. **Toast Notifications:** User feedback without blocking UI
 
 ---
 
@@ -133,6 +209,16 @@ GitHub: <https://github.com/harishnukala90>
 ## 📄 License
 
 MIT License
+
+---
+
+## 🙏 Acknowledgments
+
+- [Firebase](https://firebase.google.com/) - Backend as a Service
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React](https://react.dev/) - The library for web and native user interfaces
+- [React Hot Toast](https://react-hot-toast.com/) - Smoking hot toast notifications
+- [Vitest](https://vitest.dev/) - Next generation testing framework
 
 ---
 
