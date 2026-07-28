@@ -1,21 +1,21 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./styles/dashboard.css";
-import "./styles/findjob.css";
-import "./styles/login.css";
-import "./styles/postjob.css";
-import "./styles/profile.css";
-import "./styles/profilemodal.css";
-import "./styles/register.css";
-import "./styles/navbar.css";
-import "./styles/cards.css";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { ErrorBoundary } from './components/ErrorBoundary'
+import ToastProvider from './components/ToastProvider'
+import App from './App.jsx'
+import './index.css'
 
-const theme = localStorage.getItem("theme") || "dark";
-document.body.className = theme;
+// Global error handler for unhandled promise rejections
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('Unhandled promise rejection:', event.reason);
+  // You can send this to a logging service
+});
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <ErrorBoundary>
+      <ToastProvider />
+      <App />
+    </ErrorBoundary>
+  </StrictMode>,
+)

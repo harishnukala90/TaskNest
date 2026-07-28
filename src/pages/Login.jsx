@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { loginUser } from "../utils/auth";
 import Loader from "../components/Loader";
 import "../styles/login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,7 +17,7 @@ export default function Login() {
   const login = async () => {
     try {
       if (!username || !password) {
-        alert("Enter username & password");
+        toast.error("Please enter username & password");
         return;
       }
 
@@ -29,7 +32,7 @@ export default function Login() {
       );
 
       if (!userData) {
-        alert("Invalid credentials");
+        toast.error("Invalid credentials");
         setLoading(false);
         return;
       }
@@ -40,15 +43,37 @@ export default function Login() {
         JSON.stringify(userData)
       );
 
-      alert("Login successful");
+      toast.success("Login successful! 🎉");
 
-      // redirect
-      window.location.href = "/dashboard";
+      // redirect using React Router (no page reload)
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 500);
 
     } catch (error) {
       console.error(error);
-      alert("Login failed: " + error.message);
+      
+      // Handle specific Firebase auth errors
+      const errorMessages = {
+        "auth/user-not-found": "No account found with this username",
+        "auth/wrong-password": "Incorrect password",
+        "auth/invalid-email": "Invalid email format",
+        "auth/too-many-requests": "Too many attempts. Please try again later",
+        "auth/invalid-credential": "Invalid credentials",
+      };
+      
+      const message = errorMessages[error.code] || "Login failed. Please try again.";
+      toast.error(message);
       setLoading(false);
+    }
+  };
+
+  /* =========================
+     HANDLE KEYBOARD SUBMIT
+  ========================= */
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      login();
     }
   };
 
@@ -69,18 +94,23 @@ export default function Login() {
       <h4 className="auth-input-label">Username</h4>
       <input
         className="auth-input-field auth-username-input"
-        placeholder="Username"
+        placeholder="Enter your username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        onKeyPress={handleKeyPress}
+        autoComplete="username"
+        autoFocus
       />
 
       <h4 className="auth-input-label">Password</h4>
       <input
         className="auth-input-field auth-password-input"
         type="password"
-        placeholder="Password"
+        placeholder="Enter your password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        onKeyPress={handleKeyPress}
+        autoComplete="current-password"
       />
 
       <button className="auth-login-submit" onClick={login}>

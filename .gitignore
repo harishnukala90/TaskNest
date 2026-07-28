@@ -12,9 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Environment files (SECURITY)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.production.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
 *.suo
@@ -22,3 +30,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Testing
+coverage/
+test-results/
+playwright-report/
+
+# PWA
+dev-dist/
