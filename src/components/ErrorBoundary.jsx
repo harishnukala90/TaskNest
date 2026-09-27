@@ -14,7 +14,7 @@ export class ErrorBoundary extends Component {
     };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     // Update state so the next render shows the fallback UI
     return { hasError: true };
   }
@@ -26,9 +26,6 @@ export class ErrorBoundary extends Component {
       error,
       errorInfo
     });
-    
-    // You can also log to an error reporting service here
-    // logErrorToMyService(error, errorInfo);
   }
 
   handleReload = () => {
@@ -38,6 +35,7 @@ export class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
+      const isDev = Boolean(import.meta.env?.DEV);
       return (
         <div style={{
           display: 'flex',
@@ -71,9 +69,9 @@ export class ErrorBoundary extends Component {
               marginBottom: '1.5rem',
               lineHeight: '1.6'
             }}>
-              We encountered an unexpected error. Our team has been notified.
+              We encountered an unexpected error.
             </p>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {isDev && this.state.error && (
               <details style={{
                 textAlign: 'left',
                 marginBottom: '1.5rem',

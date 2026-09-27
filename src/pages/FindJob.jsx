@@ -28,7 +28,7 @@ export default function FindJob() {
             setWorker({ uid: firebaseUser.uid, ...snap.data() });
           }
         } catch (err) {
-          console.error(err);
+          console.error("Error loading worker profile:", err);
         } finally {
           setLoading(false);
         }
@@ -50,8 +50,14 @@ export default function FindJob() {
       const jobsList = snap.docs
         .map((d) => ({ id: d.id, ...d.data() }))
         .filter((job) => {
-          if (!job.date || !job.timeTo) return true;
+          if (!job.date) return true;
+          if (!job.timeTo) {
+            // Check date only
+            const jobDate = new Date(job.date + "T23:59:59");
+            return isNaN(jobDate.getTime()) || jobDate > now;
+          }
           const end = new Date(`${job.date}T${job.timeTo}`);
+          if (isNaN(end.getTime())) return true;
           return end > now;
         });
 
@@ -65,7 +71,7 @@ export default function FindJob() {
      HELPERS
   ========================= */
   const hasAlreadyApplied = (job) =>
-    (job.appliedWorkers || []).some((w) => w.uid === worker.uid);
+    (job.appliedWorkers || []).some((w) => w.uid === worker?.uid);
 
   const getApprovedCount = (job) =>
     (job.appliedWorkers || []).filter((w) => w.status === "approved").length;
@@ -74,70 +80,75 @@ export default function FindJob() {
      APPLY JOB
   ========================= */
   const applyJob = async (job) => {
-  try {
-    if (job.status === "completed") {
-      alert("Job completed");
-      return;
-    }
+    try {
+      if (!worker) {
+        alert("Please log in to apply");
+        return;
+      }
 
-    if (hasAlreadyApplied(job)) {
-      alert("Already applied");
-      return;
-    }
+      if (job.status === "completed") {
+        alert("Job completed");
+        return;
+      }
 
-    const approvedCount = getApprovedCount(job);
-    if (approvedCount >= (job.requiredWorkers || 1)) {
-      alert("No slots available");
-      return;
-    }
+      if (hasAlreadyApplied(job)) {
+        alert("Already applied");
+        return;
+      }
 
-    /* =========================
-       MAIN ACTION (ONLY REAL SUCCESS CHECK)
-    ========================= */
+      const approvedCount = getApprovedCount(job);
+      if (approvedCount >= (job.requiredWorkers || 1)) {
+        alert("No slots available");
+        return;
+      }
 
-    await updateDoc(doc(db, "jobs", job.id), {
-      appliedWorkers: arrayUnion({
-        uid: worker.uid,
-        username: worker.username,
-        profile: worker.profile,
-        status: "pending"
-      })
-    });
-
-    /* =========================
-       OPTIONAL LOGGING (SILENT)
-    ========================= */
-
-    // worker activity
-    updateDoc(doc(db, "users", worker.uid), {
-      activity: arrayUnion({
-        type: "applied_job",
-        message: `Applied for "${job.title}"`,
-        time: new Date().toLocaleString(),
-        relatedUserId: job.providerId
-      })
-    }).catch(() => {}); // silent ignore
-
-    // provider notification (blocked by rules → ignore)
-    if (job.providerId) {
-      updateDoc(doc(db, "users", job.providerId), {
-        activity: arrayUnion({
-          type: "new_applicant",
-          message: `${worker.username} applied for "${job.title}"`,
-          time: new Date().toLocaleString(),
-          relatedUserId: worker.uid
+      /* =========================
+         MAIN ACTION
+      ========================= */
+      await updateDoc(doc(db, "jobs", job.id), {
+        appliedWorkers: arrayUnion({
+          uid: worker.uid,
+          username: worker.username || worker.profile?.name || "Worker",
+          profile: worker.profile || {},
+          status: "pending"
         })
-      }).catch(() => {}); // ignore permission error
+      });
+
+      /* =========================
+         OPTIONAL LOGGING (SILENT)
+      ========================= */
+
+      // worker activity
+      updateDoc(doc(db, "users", worker.uid), {
+        activity: arrayUnion({
+          type: "applied_job",
+          message: `Applied for "${job.title}"`,
+          time: new Date().toLocaleString(),
+          relatedUserId: job.providerId
+        })
+      }).catch(() => {});
+
+      // provider notification
+      if (job.providerId) {
+        updateDoc(doc(db, "users", job.providerId), {
+          activity: arrayUnion({
+            type: "new_applicant",
+            message: `${worker.username || "A worker"} applied for "${job.title}"`,
+            time: new Date().toLocaleString(),
+            relatedUserId: worker.uid
+          })
+        }).catch(() => {});
+      }
+
+      /* SUCCESS MESSAGE */
+      alert("Applied successfully!");
+
+    } catch (err) {
+      console.error("Apply failed:", err);
+      alert("Failed to apply");
     }
+  };
 
-    /* SUCCESS MESSAGE */
-    alert("Applied successfully!");
-
-  } catch (err) {
-    console.error("Apply failed:", err);
-    alert("Failed to apply");
-  }
-};
   /* =========================
      CANCEL APPLICATION
   ========================= */
@@ -183,14 +194,14 @@ export default function FindJob() {
             const totalNeeded = job.requiredWorkers || 1;
             const isFull = approvedCount >= totalNeeded;
             const alreadyApplied = hasAlreadyApplied(job);
-            const progressWidth = (approvedCount / totalNeeded) * 100;
+            const progressWidth = Math.min((approvedCount / totalNeeded) * 100, 100);
 
             return (
               <div key={job.id} className="card fj-job-card">
                 <h3>{job.title}</h3>
 
                 <p>
-                  {job.date} | {job.timeFrom} – {job.timeTo}
+                  {job.date} {job.timeFrom && job.timeTo ? `| ${job.timeFrom} – ${job.timeTo}` : ""}
                 </p>
 
                 <div className="fj-progress-bg">

@@ -86,7 +86,7 @@ export default function Profile() {
         await updatePassword(auth.currentUser, password);
       }
 
-      setUser({ ...user, ...updateData });
+      setUser({ ...user, ...updateData, profilePic: profilePicUrl });
       setPassword("");
       setImage(null);
       setIsEditing(false);
@@ -124,7 +124,6 @@ export default function Profile() {
       <h2>{isEditing ? "Edit Profile" : "My Profile"}</h2>
 
       <div className="prof-info-card">
-        <p>We are facing some issue with profile picture 😅</p>
         {/* AVATAR */}
         <div className="prof-avatar-display">
           <div className="prof-img-wrapper">
@@ -155,7 +154,7 @@ export default function Profile() {
             )}
           </div>
 
-          <h3>{user.profile.name || user.username}</h3>
+          <h3>{user.profile?.name || user.username}</h3>
           <span className="role-badge">{user.role}</span>
         </div>
 
@@ -163,14 +162,14 @@ export default function Profile() {
         {!isEditing ? (
           <div className="prof-view-mode">
             <p><b>Username:</b> {user.username}</p>
-            <p><b>Location:</b> {user.profile.location || "Not set"}</p>
-            <p><b>Phone:</b> {user.profile.phone || "Not set"}</p>
+            <p><b>Location:</b> {user.profile?.location || "Not set"}</p>
+            <p><b>Phone:</b> {user.profile?.phone || "Not set"}</p>
 
             {user.role === "worker" && (
-              <p><b>Age:</b> {user.profile.age || "Not set"}</p>
+              <p><b>Age:</b> {user.profile?.age || "Not set"}</p>
             )}
 
-            <p>{user.profile.description || "No description."}</p>
+            <p>{user.profile?.description || "No description."}</p>
 
             <button
               className="prof-edit-trigger-btn"
@@ -184,7 +183,7 @@ export default function Profile() {
             <input
               className="prof-input"
               placeholder="Name"
-              value={user.profile.name}
+              value={user.profile?.name || ""}
               onChange={(e) =>
                 setUser({
                   ...user,
@@ -199,7 +198,7 @@ export default function Profile() {
             <input
               className="prof-input"
               placeholder="Location"
-              value={user.profile.location}
+              value={user.profile?.location || ""}
               onChange={(e) =>
                 setUser({
                   ...user,
@@ -214,7 +213,7 @@ export default function Profile() {
             <input
               className="prof-input"
               placeholder="Phone"
-              value={user.profile.phone}
+              value={user.profile?.phone || ""}
               onChange={(e) =>
                 setUser({
                   ...user,
@@ -230,7 +229,7 @@ export default function Profile() {
               <input
                 className="prof-input"
                 placeholder="Age"
-                value={user.profile.age}
+                value={user.profile?.age || ""}
                 onChange={(e) =>
                   setUser({
                     ...user,
@@ -246,7 +245,7 @@ export default function Profile() {
             <textarea
               className="prof-textarea"
               placeholder="Description"
-              value={user.profile.description}
+              value={user.profile?.description || ""}
               onChange={(e) =>
                 setUser({
                   ...user,

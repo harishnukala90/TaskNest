@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { loginUser } from "../utils/auth";
 import Loader from "../components/Loader";
@@ -97,7 +97,7 @@ export default function Login() {
         placeholder="Enter your username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         autoComplete="username"
         autoFocus
       />
@@ -109,7 +109,7 @@ export default function Login() {
         placeholder="Enter your password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         autoComplete="current-password"
       />
 
@@ -121,9 +121,9 @@ export default function Login() {
 
       <p className="reg-prompt auth-registration-hint">
         If you don't have an account,&nbsp;
-        <a className="reg-link auth-redirect-link" href="/register">
+        <Link className="reg-link auth-redirect-link" to="/register">
           Register
-        </a>
+        </Link>
         &nbsp;now!
       </p>
     </div>

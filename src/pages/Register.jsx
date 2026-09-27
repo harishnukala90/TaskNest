@@ -104,7 +104,6 @@ export default function Register() {
         } catch (uploadError) {
           console.error("Image upload failed:", uploadError);
           toast.error("Failed to upload profile picture, continuing without it...");
-          // Continue without profile picture
         }
       }
 
@@ -212,12 +211,14 @@ export default function Register() {
 
       {/* PROFILE IMAGE */}
       <div className="reg-avatar-section">
-        <p>We are facing some issue with profile picture 😅</p>
         <div className="reg-avatar-preview">
-          <img
-            src={preview || "/default-avatar.png"}
-            alt="preview"
-          />
+          {preview ? (
+            <img src={preview} alt="preview" />
+          ) : (
+            <div className="prof-letter-avatar">
+              {(user.profile.name || user.username || "U").charAt(0).toUpperCase()}
+            </div>
+          )}
         </div>
 
         <label className="reg-file-label">
