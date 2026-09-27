@@ -1,40 +1,34 @@
-export const addActivity = (username, message) => {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+import { db } from "../firebase";
+import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 
-  const updatedUsers = users.map(user => {
-    if (user.username === username) {
-      return {
-        ...user,
-        activity: [
-          ...(user.activity || []),
-          {
-            message,
-            time: new Date().toLocaleString()
-          }
-        ]
-      };
-    }
-    return user;
-  });
-
-  localStorage.setItem("users", JSON.stringify(updatedUsers));
-
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (currentUser.username === username) {
-    localStorage.setItem(
-      "currentUser",
-      JSON.stringify({
-        ...currentUser,
-        activity: updatedUsers.find(u => u.username === username).activity
+/**
+ * Add an activity log entry to a user's Firestore document
+ * @param {string} userId - ID of the user
+ * @param {string} message - Activity message
+ * @param {string|null} relatedUserId - Optional related user ID
+ */
+export const addActivity = async (userId, message, relatedUserId = null) => {
+  if (!userId) return;
+  try {
+    const userRef = doc(db, "users", userId);
+    await updateDoc(userRef, {
+      activity: arrayUnion({
+        message,
+        time: new Date().toLocaleString(),
+        relatedUserId
       })
-    );
+    });
+  } catch (error) {
+    console.error("Error adding activity:", error);
   }
 };
 
-import { db } from "../firebase";
-import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
-import { addActivity } from "./activity"; // The Firestore version we just made
-
+/**
+ * Apply for a job in Firestore
+ * @param {string} jobId - ID of the job
+ * @param {string} workerId - ID of the worker
+ * @param {string} workerName - Name or username of the worker
+ */
 export const applyForJob = async (jobId, workerId, workerName) => {
   try {
     const jobRef = doc(db, "jobs", jobId);
@@ -53,7 +47,6 @@ export const applyForJob = async (jobId, workerId, workerName) => {
     });
 
     // 2. Record in Worker's History
-    // We link the Provider's ID so the worker can view who they applied to
     await addActivity(
       workerId,
       `You applied for the job: "${jobData.title}"`,

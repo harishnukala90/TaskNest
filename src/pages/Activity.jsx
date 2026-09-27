@@ -27,10 +27,9 @@ export default function Activity() {
         if (snap.exists()) {
           const activityData = snap.data().activity || [];
 
+          // Retain all meaningful activity records
           const filtered = activityData.filter(
-            (act) =>
-              act.type === "job_completed_summary" ||
-              act.message === "Logged in"
+            (act) => act && (act.message || act.type)
           );
 
           setActivities([...filtered].reverse());
@@ -51,14 +50,17 @@ export default function Activity() {
   const clearHistory = async () => {
     if (!window.confirm("Clear activity history?")) return;
 
-    const userRef = doc(db, "users", auth.currentUser.uid);
-    await updateDoc(userRef, { activity: [] });
-
-    setActivities([]);
+    try {
+      const userRef = doc(db, "users", auth.currentUser.uid);
+      await updateDoc(userRef, { activity: [] });
+      setActivities([]);
+    } catch (err) {
+      console.error("Failed to clear activity history:", err);
+    }
   };
 
   /* ============================================================
-     OPEN SINGLE PROFILE (WORKER → PROVIDER)
+     OPEN SINGLE PROFILE
   ============================================================ */
   const handleViewProfile = async (targetId) => {
     if (!targetId) return;
@@ -100,7 +102,7 @@ export default function Activity() {
         {activities.length === 0 ? (
           <div className="empty-activity">
             <span className="material-icons">history_toggle_off</span>
-            <p>No relevant activity recorded yet.</p>
+            <p>No activity recorded yet.</p>
           </div>
         ) : (
           <div className="timeline">
@@ -109,7 +111,7 @@ export default function Activity() {
                 act.type === "job_completed_summary";
 
               const canView =
-                isSummary || act.relatedUserId;
+                isSummary || act.relatedUserId || (act.provider && act.provider.uid);
 
               return (
                 <div
@@ -118,28 +120,32 @@ export default function Activity() {
                     canView ? "clickable" : ""
                   }`}
                   onClick={() => {
-                      if (
-                        isSummary &&
-                        Array.isArray(act.workers) &&
-                        act.workers.length > 0
-                      ) {
-                        setSelectedUser({
-                          workers: act.workers,
-                          isGroup: true,
-                        });
-                        return;
-                      }
-                      if (act.relatedUserId) {
-                        handleViewProfile(act.relatedUserId);
-                      }
-                    }}
+                    if (
+                      isSummary &&
+                      Array.isArray(act.workers) &&
+                      act.workers.length > 0
+                    ) {
+                      setSelectedUser({
+                        workers: act.workers,
+                        isGroup: true,
+                      });
+                      return;
+                    }
+                    if (act.relatedUserId) {
+                      handleViewProfile(act.relatedUserId);
+                      return;
+                    }
+                    if (act.provider?.uid) {
+                      handleViewProfile(act.provider.uid);
+                    }
+                  }}
                 >
                   <div className="timeline-dot"></div>
 
                   <div className="timeline-content card">
                     <div className="activity-meta">
                       <span className="activity-date">
-                        {act.time}
+                        {act.time || "Recently"}
                       </span>
 
                       {canView && (
@@ -147,15 +153,15 @@ export default function Activity() {
                           <span className="material-icons">
                             visibility
                           </span>
-                          View Profile
+                          View Details
                         </span>
                       )}
                     </div>
 
                     <p className="activity-msg">
-                      {isSummary
+                      {isSummary && act.jobTitle
                         ? `Job Completed: "${act.jobTitle}"`
-                        : act.message}
+                        : act.message || "Activity recorded"}
                     </p>
                   </div>
                 </div>
@@ -172,7 +178,7 @@ export default function Activity() {
         />
       )}
 
-      {modalLoading && <Loader message="Opening Profile..." />}
+      {modalLoading && <Loader message="Opening Details..." />}
       <ScrollToTop />
     </div>
   );

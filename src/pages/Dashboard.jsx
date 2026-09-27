@@ -19,7 +19,6 @@ export default function Dashboard() {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedProfile, setSelectedProfile] = useState(null);
-  const [, setModalTitle] = useState("");
 
   /* =========================
       LOAD CURRENT USER
@@ -48,7 +47,6 @@ export default function Dashboard() {
   ========================= */
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "jobs"), (snapshot) => {
-      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setJobs(
         snapshot.docs.map(doc => ({
           id: doc.id,
@@ -93,72 +91,71 @@ export default function Dashboard() {
   /* =========================
       DELETE & COMPLETE
   ========================= */
-const deleteJob = async (job) => {
+  const deleteJob = async (job) => {
 
-  if (!window.confirm("Delete this job? All applicants will be notified."))
-    return;
+    if (!window.confirm("Delete this job? All applicants will be notified."))
+      return;
 
-  try {
+    try {
 
-    /* =========================
-       1️⃣ GET PROVIDER SNAPSHOT
-    ========================= */
-    const providerSnap = await getDoc(
-      doc(db, "users", currentUser.uid)
-    );
+      /* =========================
+         1️⃣ GET PROVIDER SNAPSHOT
+      ========================= */
+      const providerSnap = await getDoc(
+        doc(db, "users", currentUser.uid)
+      );
 
-    const providerData = providerSnap.data();
+      const providerData = providerSnap.data() || {};
 
-    /* =========================
-       2️⃣ STORE PROVIDER HISTORY
-    ========================= */
-    updateDoc(doc(db, "users", currentUser.uid), {
-      activity: arrayUnion({
-        type: "delete_job",
-        message: `You deleted the job: "${job.title}"`,
-        time: new Date().toLocaleString(),
-        relatedUserId: null
-      })
-    }).catch(() => {});
-
-    /* =========================
-       3️⃣ SAVE PROVIDER DETAILS
-       INTO EACH WORKER HISTORY
-    ========================= */
-    (job.appliedWorkers || []).forEach((w) => {
-      updateDoc(doc(db, "users", w.uid), {
+      /* =========================
+         2️⃣ STORE PROVIDER HISTORY
+      ========================= */
+      updateDoc(doc(db, "users", currentUser.uid), {
         activity: arrayUnion({
-          type: "job_cancelled",
-
-          jobTitle: job.title,
-          location: job.location,
-          date: job.date,
-
-          // ⭐ IMPORTANT PART
-          provider: {
-            uid: currentUser.uid,
-            username: providerData.username,
-            profile: providerData.profile
-          },
-
-          message: `The job "${job.title}" was deleted by ${providerData.username}.`,
-          time: new Date().toLocaleString()
+          type: "delete_job",
+          message: `You deleted the job: "${job.title}"`,
+          time: new Date().toLocaleString(),
+          relatedUserId: null
         })
       }).catch(() => {});
-    });
 
-    /* =========================
-       4️⃣ DELETE JOB LAST
-    ========================= */
-    await deleteDoc(doc(db, "jobs", job.id));
+      /* =========================
+         3️⃣ SAVE PROVIDER DETAILS
+         INTO EACH WORKER HISTORY
+      ========================= */
+      (job.appliedWorkers || []).forEach((w) => {
+        updateDoc(doc(db, "users", w.uid), {
+          activity: arrayUnion({
+            type: "job_cancelled",
 
-    alert("Job deleted successfully!");
+            jobTitle: job.title,
+            location: job.location,
+            date: job.date,
 
-  } catch (error) {
-    console.error("Delete failed:", error);
-    alert("Failed to delete job");
-  }
-};
+            provider: {
+              uid: currentUser.uid,
+              username: providerData.username || currentUser.username,
+              profile: providerData.profile || currentUser.profile
+            },
+
+            message: `The job "${job.title}" was deleted by ${providerData.username || "the provider"}.`,
+            time: new Date().toLocaleString()
+          })
+        }).catch(() => {});
+      });
+
+      /* =========================
+         4️⃣ DELETE JOB LAST
+      ========================= */
+      await deleteDoc(doc(db, "jobs", job.id));
+
+      alert("Job deleted successfully!");
+
+    } catch (error) {
+      console.error("Delete failed:", error);
+      alert("Failed to delete job");
+    }
+  };
 
   const markCompleted = async (job) => {
     try {
@@ -190,7 +187,6 @@ const deleteJob = async (job) => {
       });
 
       // 3. Add to ALL Hired Workers' Histories
-      // MODIFICATION: Using type 'job_completed_summary' so it passes the Activity.jsx filter
       const notifyPromises = hiredWorkers.map(w => 
         updateDoc(doc(db, "users", w.uid), {
           activity: arrayUnion({
@@ -252,7 +248,6 @@ const deleteJob = async (job) => {
                   <div key={worker.uid} className="db-worker-card-container">
                     <div onClick={() => { 
                         setSelectedProfile({ ...worker, role: "worker" }); 
-                        setModalTitle("Worker Details"); 
                     }}>
                       <WorkerCard 
                         worker={worker} 
