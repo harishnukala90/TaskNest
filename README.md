@@ -45,7 +45,7 @@ Scan the QR code to open TaskNest directly on your phone.
 
 ## 🌐 Live Website
 
-👉 **Open App:** <https://tasknest-73b8d.web.app/>
+👉 **Open App:** <https://tasknestsit.je/>
 
 ---
 
